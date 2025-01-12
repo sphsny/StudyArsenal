@@ -1,0 +1,29 @@
+/* purple text style */
+.text-purple {
+    color: rgb(145, 115, 143);
+}
+
+/* button style */
+.black-button {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* button on hover */
+.black-button:hover {
+    background-color: black;
+    color: white;
+    border-color: white;
+}
+
+/* small button */
+.button-small {
+    padding: 2px 8px;
+    font-size: 12px;
+    line-height: 1.2;
+}

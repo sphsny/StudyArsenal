@@ -1,3 +1,39 @@
-<container>
-    <h1>This is your Home Page!</h1>
-</container>
+<!-- link css styles -->
+<link rel="stylesheet" href="css/styles.css">
+
+<!-- OVERVIEW/HOME PAGE -->
+<h1 class="pt-3 text-center">Welcome to your home page!</h1> <!-- padding top, center text on site -->
+<div class="d-flex px-5" style="height: 75vh;"> <!-- align two containers side by side, horizontal padding, height -->
+
+    <!-- PROFILE (left-hand side)-->
+    <div class="container p-3 my-3 border text-center col-5"> <!-- create container, inside padding, vertical margin, center text, take space of 5 columns -->
+        <h1>Profile</h1>
+            <!-- profile picture place holder -->
+            <image src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapers.com%2Fimages%2Fhd%2Fcool-anime-girl-pfp-sajuna-inui-dgg3rwh8q6po13o6.jpg&f=1&nofb=1&ipt=444667f152635cf9ccc2b609d90ec5af6edc84999d89ad4adaeae13c100e8abe&ipo=images" class="rounded-circle img-thumbnail img-fluid" style="width: 300px; height: 300px; object-fit: cover;"></image>
+            <!-- java script to change profile picture -->
+            <input type="file" id="profile-picture-input" style="display: none;" accept="image/*" onchange="updateProfilePicture(this)">
+            <!-- user attributes -->
+             <p class="pt-3 fs-2 font-monospace text-purple">Safi</p> <!-- needs javascript to be edited -->
+             <p class="fs-5">User since: 12.01.2025</p> <!-- needs javascript to keep track -->
+             <p class="fs-5">Time tracked: 125h</p> <!-- needs javascript to keep track -->
+    </div>
+
+    <!-- TASKS (right-hand side)-->
+    <div class="container p-3 my-3 border text-center col-7">
+        <h1>Tasks</h1>
+        <!-- div for tasks -->
+        <div class="p-4 d-flex flex-column align-items-start"> <!-- padding, align on top of each other, align at start -->
+            <!-- place holder task 1 -->
+            <div class="d-flex align-items-center" id="task-1">
+                <input type="checkbox" class="form-check-input me-2">
+                <p class="fs-3 mb-0">Task 1</p>
+                <button class="black-button ms-3 button-small" onclick="deleteTask('task-1')">Edit</button>
+                <button class="black-button ms-2 button-small" onclick="deleteTask('task-1')">Delete</button>
+            </div>
+        </div>
+        <!-- add task -->
+        <div class="d-flex justify-content-start mt-auto px-5">
+            <button class="black-button" onclick="addTask()">Add Task</button>
+        </div>
+    </div>
+</div>
