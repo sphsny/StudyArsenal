@@ -5,8 +5,7 @@ const pages = {
     timer: 'pages/timer.html',
     calendar: 'pages/calendar.html',
     statistics: 'pages/statistics.html',
-    about: 'pages/about.html',
-    contact: 'pages/contact.html'
+    about: 'pages/about.html'
 };
 
 // load content into #main-content div
