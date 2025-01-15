@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="css/styles.css">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<h1 class="pt-3 text-center">Track your time here!</h1>
+
+<div class="container p-3 my-3 border text-center" style="height: 70vh;">
+    <p class="fs-4">Choose your activity</p>
+    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+        <option selected>COMP1003</option>
+        <option value="1">COMP1004</option>
+        <option value="2">COMP1000</option>
+        <option value="3">COMP1001</option>
+    </select>
+
+    <div id="chronoExample">
+        <div class="values mt-5 fs-3">00:00:00</div>
+        <div class="mt-5">
+            <button class="startButton black-button">Start</button>
+            <button class="pauseButton black-button" >Pause</button>
+            <button class="stopButton black-button">Stop</button>
+            <button class="resetButton black-button">Reset</button>
+        </div>
+    </div>
+    <script src="lib/easytimer/dist/easytimer.min.js"></script>
+</div>
+
+<script>
+    var timer = new easytimer.Timer();
+    $('#chronoExample .startButton').click(function () {
+        timer.start();
+    });
+
+    $('#chronoExample .pauseButton').click(function () {
+        timer.pause();
+    });
+
+    $('#chronoExample .stopButton').click(function () {
+        timer.stop();
+    });
+
+    $('#chronoExample .resetButton').click(function () {
+        timer.reset();
+    });
+
+    timer.addEventListener('secondsUpdated', function (e) {
+        $('#chronoExample .values').html(timer.getTimeValues().toString());
+    });
+
+    timer.addEventListener('started', function (e) {
+        $('#chronoExample .values').html(timer.getTimeValues().toString());
+    });
+
+    timer.addEventListener('reset', function (e) {
+        $('#chronoExample .values').html(timer.getTimeValues().toString());
+    });
+</script>
