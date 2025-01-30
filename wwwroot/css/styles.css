@@ -39,3 +39,16 @@
     transition: all 0.3s ease;
     border-radius: 0; /* Optional: Match button's rounded corners */
 }
+
+#input {
+    height: 50px;
+    width: 75%;
+    border-radius: 3px;
+    padding: 0 10px;
+    margin: 15px 0;
+    color: rgb(145, 115, 143);
+}
+
+#input::placeholder {
+    color: rgb(145, 115, 143);
+}

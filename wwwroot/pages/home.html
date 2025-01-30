@@ -1,5 +1,7 @@
 <!-- link css styles -->
 <link rel="stylesheet" href="css/styles.css">
+<!-- link jquery -->
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
 <!-- OVERVIEW/HOME PAGE -->
 <h1 class="pt-3 text-center">Welcome to your home page!</h1> <!-- padding top, center text on site -->
@@ -21,19 +23,17 @@
     <!-- TASKS (right-hand side)-->
     <div class="container p-3 my-3 border text-center col-7">
         <h1>Tasks</h1>
+        <!-- input form to add tasks -->
+        <input type="text text-purple" id="input" placeholder="Press enter to add new task">
         <!-- div for tasks -->
-        <div class="p-4 d-flex flex-column align-items-start"> <!-- padding, align on top of each other, align at start -->
+        <div class="d-flex flex-column align-items-start"> <!-- padding, align on top of each other, align at start -->
             <!-- place holder task 1 -->
-            <div class="d-flex align-items-center" id="task-1">
-                <input type="checkbox" class="form-check-input me-2">
-                <p class="fs-3 mb-0">Task 1</p>
-                <button class="black-button ms-3 button-small" onclick="deleteTask('task-1')">Edit</button>
-                <button class="black-button ms-2 button-small" onclick="deleteTask('task-1')">Delete</button>
-            </div>
-        </div>
-        <!-- add task -->
-        <div class="d-flex justify-content-start mt-auto px-5">
-            <button class="black-button" onclick="addTask()">Add Task</button>
+            <button class="black-button ms-3 button-small" onclick="deleteTask('task-1')">Edit</button>
+            <button class="black-button ms-2 button-small" onclick="deleteTask('task-1')">Delete</button>
         </div>
     </div>
 </div>
+
+<script>
+    
+</script>
