@@ -1,55 +1,65 @@
-// page definitions
-const pages = {
-    home: 'pages/home.html',
-    overview: 'pages/overview.html',
-    timer: 'pages/timer.html',
-    calendar: 'pages/calendar.html',
-    statistics: 'pages/statistics.html',
-    about: 'pages/about.html'
-};
+/*
+ * Solution for SPA with dynamic content loading and script reattachment
+ * Based on concepts from:
+ * - JavaScript Fetch API (for dynamic content loading)
+ * - jQuery (for DOM manipulation)
+ * - Custom logic for executing scripts after dynamic page load
+ * 
+ * Created with assistance from ChatGPT (OpenAI) and learning resources such as MDN, Stack Overflow
+ */
 
-// load content into #main-content div
-function loadPage(page) {
-    if (pages[page]) {
+document.addEventListener("DOMContentLoaded", function () {
+    const pages = {
+        home: "pages/home.html",
+        overview: "pages/overview.html",
+        timer: "pages/timer.html",
+        calendar: "pages/calendar.html",
+        statistics: "pages/statistics.html",
+        about: "pages/about.html"
+    };
+
+    function loadPage(page) {
+        if (!pages[page]) {
+            document.getElementById("main-content").innerHTML = "<h2>404 - Page Not Found</h2>";
+            return;
+        }
+
         fetch(pages[page])
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Page not found');
-                }
-                return response.text();
-            })
-            .then(data => {
-                document.getElementById('main-content').innerHTML = data; // Update main content
-                history.pushState({ page: page }, page, `#${page}`); // Update URL hash
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("main-content").innerHTML = html;
+                history.pushState({ page }, "", `#${page}`);
+                reattachScripts(); // run scripts after loading main-content, else js doesn't work
             })
             .catch(error => {
-                console.error('Error fetching the page:', error);
-                document.getElementById('main-content').innerHTML = '<p>Sorry, the page could not be loaded.</p>';
+                console.error("Error loading page:", error);
+                document.getElementById("main-content").innerHTML = "<h2>Failed to load the page.</h2>";
             });
-    } else {
-        // fallback for undefined pages
-        document.getElementById('main-content').innerHTML = "<h2>404 - Page Not Found</h2>";
     }
-}
 
-// event listeners for navigation links
-document.addEventListener('DOMContentLoaded', () => {
-    const navLinks = document.querySelectorAll('nav a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
-            e.preventDefault(); // Prevent default link behavior
-            const page = this.getAttribute('data-page'); // Get the page name from data-page
-            loadPage(page);
+    function reattachScripts() {
+        const scripts = document.querySelectorAll("#main-content script");
+        scripts.forEach(oldScript => {
+            const newScript = document.createElement("script");
+            if (oldScript.src) {
+                newScript.src = oldScript.src; 
+            } else {
+                newScript.textContent = oldScript.textContent;
+            }
+            document.body.appendChild(newScript);
+            oldScript.remove();
+        });
+
+    }
+
+    // handle nav bar
+    document.querySelectorAll("nav a").forEach(link => {
+        link.addEventListener("click", function (e) {
+            e.preventDefault();
+            loadPage(this.getAttribute("data-page"));
         });
     });
 
-    // load the initial page based on the URL hash
-    const initialPage = location.hash.replace('#', '') || 'home'; // default to home if no hash
-    loadPage(initialPage);
-});
+    loadPage(location.hash.substring(1) || "home");
 
-// handle browser navigation (back/forward buttons)
-window.addEventListener("hashchange", () => {
-    const page = location.hash.substring(1) || "home";
-    loadPage(page);
 });
