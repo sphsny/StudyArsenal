@@ -16,12 +16,12 @@
             <input type="file" id="profile-picture-input" style="display: none;" accept="image/*" onchange="updateProfilePicture(this)">
             <!-- user NAME -->
             <p class="pt-3 fs-2 font-monospace text-purple align-items-center">
-                <span id="username text-center">Username</span>
+                <span id="username">Username</span>
                 <span class="black-button button-small" id="editName">✏️</span>
             </p>
 
             <!-- user attributes -->
-             <p class="fs-5">Time tracked: 125h</p> <!-- needs javascript to keep track -->
+             <p class="fs-5">Time tracked: 0h</p> <!-- needs javascript to keep track -->
     </div>
 
     <!-- TASKS (right-hand side)-->
@@ -37,3 +37,13 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#editName').click(function() { // click button besides username
+            $("#username").attr("href", function(newUsername, username){ // open form and write new name
+            return newUsername + "/jquery/"; // close form and convert to p with new username
+            });
+        });
+    });
+</script>
