@@ -1,7 +1,5 @@
 <link rel="stylesheet" href="css/styles.css">
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <h1 class="pt-3 text-center">Track your time here!</h1>
 
 <div class="container p-3 my-3 border text-center" style="height: 70vh;">
@@ -11,48 +9,67 @@
         <option value="2">COMP1000</option>
         <option value="3">COMP1001</option>
     </select>
-
+    
     <div id="chronoExample">
         <div class="values mt-5 fs-3">00:00:00</div>
         <div class="mt-5">
             <button class="startButton black-button">Start</button>
-            <button class="pauseButton black-button" >Pause</button>
+            <button class="pauseButton black-button">Pause</button>
             <button class="stopButton black-button">Stop</button>
             <button class="resetButton black-button">Reset</button>
         </div>
     </div>
-    <script src="lib/easytimer/dist/easytimer.min.js"></script>
 
     <p class="fs-4 pt-3">or add time manually</p>
 </div>
 
+<!-- scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/easytimer.js/dist/easytimer.min.js"></script>
+
+<!-- from https://albert-gonzalez.github.io/easytimer.js/ -->
 <script>
-    var timer = new easytimer.Timer();
-    $('#chronoExample .startButton').click(function () {
-        timer.start();
-    });
+    $(document).ready(function () {
 
-    $('#chronoExample .pauseButton').click(function () {
-        timer.pause();
-    });
+        var timer = new easytimer.Timer();
 
-    $('#chronoExample .stopButton').click(function () {
-        timer.stop();
-    });
+        $('#chronoExample .startButton').click(function () {
+            console.log("Start button clicked");
+            timer.start();
+        });
 
-    $('#chronoExample .resetButton').click(function () {
-        timer.reset();
-    });
+        $('#chronoExample .pauseButton').click(function () {
+            console.log("Pause button clicked");
+            timer.pause();
+        });
 
-    timer.addEventListener('secondsUpdated', function (e) {
-        $('#chronoExample .values').html(timer.getTimeValues().toString());
-    });
+        $('#chronoExample .stopButton').click(function () {
+            console.log("Stop button clicked");
+            timer.stop();
+        });
 
-    timer.addEventListener('started', function (e) {
-        $('#chronoExample .values').html(timer.getTimeValues().toString());
-    });
+        $('#chronoExample .resetButton').click(function () {
+            console.log("Reset button clicked");
+            timer.reset();
+        });
 
-    timer.addEventListener('reset', function (e) {
-        $('#chronoExample .values').html(timer.getTimeValues().toString());
+        timer.addEventListener('secondsUpdated', function () {
+            console.log("Timer updated: " + timer.getTimeValues().toString());
+            $('#chronoExample .values').html(timer.getTimeValues().toString());
+        });
+
+        timer.addEventListener('started', function () {
+            console.log("Timer started");
+            $('#chronoExample .values').html(timer.getTimeValues().toString());
+        });
+
+        timer.addEventListener('reset', function () {
+            console.log("Timer reset");
+            $('#chronoExample .values').html(timer.getTimeValues().toString());
+        });
+
+        timer.addEventListener('stopped', function () {
+            console.log("Timer stopped");
+        });
     });
 </script>
