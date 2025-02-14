@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <title>Study Arsenal</title>
+
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top bg-dark">
+        <div class="container-fluid">
+            <div class="navbar-brand d-flex align-items-center ms-5 text-white">StudyArsenal</div>
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="overview.html">Overview</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="timer.html">Timer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="calendar.html">Calendar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="statistics.html">Statistics</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="about.html">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1>I'm hidden</h1>
+
+    <!-- MAIN CONTENT -->
+    <h1 class="pt-3 text-center">Welcome to your home page!</h1> <!-- padding top, center text on site -->
+    <div class="d-flex px-5" style="height: 75vh;"> <!-- align two containers side by side, horizontal padding, height -->
+
+        <!-- PROFILE (left-hand side)-->
+        <div class="container p-3 my-3 border text-center col-5"> <!-- create container, inside padding, vertical margin, center text, take space of 5 columns -->
+            <h1>Profile</h1>
+                <!-- profile picture place holder -->
+                <image src="../images/profilePicturePlaceHolder.png" class="rounded-circle img-thumbnail img-fluid" style="width: 300px; height: 300px; object-fit: cover;"></image> <!-- image from https://commons.wikimedia.org/wiki/File:Profile_avatar_placeholder_large.png -->
+                <!-- java script to change profile picture -->
+                <input type="file" id="profile-picture-input" style="display: none;" accept="image/*" onchange="updateProfilePicture(this)">
+                <!-- user NAME -->
+                <p class="pt-3 fs-2 font-monospace text-purple align-items-center">
+                    <span id="username">Username</span>
+                    <span class="black-button button-small" id="editName">✏️</span>
+                </p>
+
+                <!-- user attributes -->
+                <p class="fs-5">Time tracked: 0h</p> <!-- needs javascript to keep track -->
+        </div>
+
+        <!-- TASKS (right-hand side) done with the help of a youtube tutorial: https://youtu.be/3OqWCGVaOkA -->
+        <div class="container p-3 my-3 border text-center col-7">
+            <h1>Tasks</h1>
+            <!-- input form to add tasks, id for javascript: todoInput -->
+            <input
+                type="text text-purple"
+                id="todoInput"
+                placeholder="Enter your task..."
+            />
+            <button id="addButton" class="btn">Add</button>
+            <hr>
+            <ul class="d-flex flex-column align-items-start"> <!-- padding, align on top of each other, align at start -->
+                <!-- list for tasks with id todoList -->
+                <li id="todoList"></li>
+            </ul>
+            <!-- buttons to save and delete selected task ?? maybe idk -->
+            <div>
+            </div>
+        </div>
+    </div>
+            
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
+<div class="container">
+    <footer class="d-flex flex-wrap align justify-content-center border-top bg-dark fixed-bottom p-3">
+        <p class="mb-3 mb-md-0 text-white text-center">2024 Study Arsenal | <a href="https://github.com/cryingongit" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+    </p>
+      </div>
+    </footer>
+  </div>
+
+</html>
+
+<script>
+    // done with the help of a youtube tutorial: https://youtu.be/3OqWCGVaOkA
+    
+    // retrieve todo tasks from local storage
+    let todo = JSON.parse(localStorage.getItem("todo")) || [];
+    
+    // constants
+    const todoInput = document.getElementById("todoInput");
+    const todoList = document.getElementById("todoList");
+    const addButton = document.getElementById("addButton");
+    const deleteButton = document.getElementById("deleteButton");
+    
+    // initialisation
+    document.addEventListener("DOMContentLoaded", function () {
+        addButton.addEventListener("click", addTask); // run addTask function on click
+    });
+    
+    // functions
+    function addTask() {
+        const newTask = todoInput.value;
+        if (newTask !== "") { // prevent empty input to be added as task
+            todo.push({
+                text: newTask, // push new task onto the array of todoList as text
+                disabled: false, // disable checkbox by default
+            });
+            saveToLocalStorage();
+            todoInput.value = "";
+            displayTasks();
+        }
+    }
+    
+    function saveToLocalStorage() {
+        localStorage.setItem("todo", JSON.stringify(todo));
+    }
+    
+    function displayTasks() {
+        todoList.innerHTML = ""; // start todo list with empty string
+        todo.forEach((item, index) => {
+            const p = document.createElement("p");
+            // write HTML inside JavaScript with ``
+        })
+    }
+    </script>
