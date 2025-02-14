@@ -1,54 +1,45 @@
 /* purple text style */
 .text-purple {
-    color: rgb(145, 115, 143);
+    color: rgb(92, 106, 134);
 }
 
 /* button style */
-.black-button {
+.btn {
     background-color: white;
     color: black;
-    border: 2px solid black;
+    border: 0.3px solid black;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
     transition: all 0.3s ease;
+    height: 50px;
+    width: 100px;
+    margin: 0px 0px 13px 0px;
 }
 
 /* button on hover */
-.black-button:hover {
+.btn:hover {
     background-color: black;
     color: white;
     border-color: white;
 }
 
-/* small button */
-.button-small {
-    padding: 2px 8px;
-    font-size: 12px;
-    line-height: 1.2;
-}
-
-/* button for selection without the hover effect the black button has */
-.select-button {
-    background-color: white;
-    color: black;
-    border: 2px solid black;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 0; /* Optional: Match button's rounded corners */
-}
-
-#input {
+#todoInput {
     height: 50px;
-    width: 75%;
+    width: 50%;
     border-radius: 3px;
+    border: 0.06px solid;
+    border-color: black;
     padding: 0 10px;
     margin: 15px 0;
-    color: rgb(145, 115, 143);
+    color: rgb(92, 106, 134);
+    font-size: 25px;
 }
 
-#input::placeholder {
-    color: rgb(145, 115, 143);
+#todoInput::placeholder {
+    color: rgb(92, 106, 134);
+}
+
+#todoList p {
+    color: rgb(92, 106, 134);
 }

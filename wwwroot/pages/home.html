@@ -1,5 +1,5 @@
 <!-- link css styles -->
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="./css/styles.css">
 <!-- link jquery -->
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
@@ -11,7 +11,7 @@
     <div class="container p-3 my-3 border text-center col-5"> <!-- create container, inside padding, vertical margin, center text, take space of 5 columns -->
         <h1>Profile</h1>
             <!-- profile picture place holder -->
-            <image src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapers.com%2Fimages%2Fhd%2Fcool-anime-girl-pfp-sajuna-inui-dgg3rwh8q6po13o6.jpg&f=1&nofb=1&ipt=444667f152635cf9ccc2b609d90ec5af6edc84999d89ad4adaeae13c100e8abe&ipo=images" class="rounded-circle img-thumbnail img-fluid" style="width: 300px; height: 300px; object-fit: cover;"></image>
+            <image src="./images/profilePicturePlaceHolder.png" class="rounded-circle img-thumbnail img-fluid" style="width: 300px; height: 300px; object-fit: cover;"></image> <!-- image from https://commons.wikimedia.org/wiki/File:Profile_avatar_placeholder_large.png -->
             <!-- java script to change profile picture -->
             <input type="file" id="profile-picture-input" style="display: none;" accept="image/*" onchange="updateProfilePicture(this)">
             <!-- user NAME -->
@@ -24,26 +24,67 @@
              <p class="fs-5">Time tracked: 0h</p> <!-- needs javascript to keep track -->
     </div>
 
-    <!-- TASKS (right-hand side)-->
+    <!-- TASKS (right-hand side) done with the help of a youtube tutorial: https://youtu.be/3OqWCGVaOkA -->
     <div class="container p-3 my-3 border text-center col-7">
         <h1>Tasks</h1>
-        <!-- input form to add tasks -->
-        <input type="text text-purple" id="input" placeholder="Press enter to add new task">
-        <!-- div for tasks -->
-        <div class="d-flex flex-column align-items-start"> <!-- padding, align on top of each other, align at start -->
-            <!-- place holder task 1 -->
-            <button class="black-button ms-3 button-small" onclick="deleteTask('task-1')">Edit</button>
-            <button class="black-button ms-2 button-small" onclick="deleteTask('task-1')">Delete</button>
+        <!-- input form to add tasks, id for javascript: todoInput -->
+        <input
+            type="text text-purple"
+            id="todoInput"
+            placeholder="Enter your task..."
+        />
+        <button id="addButton" class="btn">Add</button>
+        <hr>
+        <ul class="d-flex flex-column align-items-start"> <!-- padding, align on top of each other, align at start -->
+            <!-- list for tasks with id todoList -->
+             <li id="todoList"></li>
+        </ul>
+        <!-- buttons to save and delete selected task ?? maybe idk -->
+        <div>
         </div>
     </div>
 </div>
 
 <script>
-    $(document).ready(function() {
-        $('#editName').click(function() { // click button besides username
-            $("#username").attr("href", function(newUsername, username){ // open form and write new name
-            return newUsername + "/jquery/"; // close form and convert to p with new username
-            });
+// done with the help of a youtube tutorial: https://youtu.be/3OqWCGVaOkA
+
+// retrieve todo tasks from local storage
+let todo = JSON.parse(localStorage.getItem("todo")) || [];
+
+// constants
+const todoInput = document.getElementById("todoInput");
+const todoList = document.getElementById("todoList");
+const addButton = document.getElementById("addButton");
+const deleteButton = document.getElementById("deleteButton");
+
+// initialisation
+document.addEventListener("DOMContentLoaded", function () {
+    addButton.addEventListener("click", addTask); // run addTask function on click
+});
+
+// functions
+function addTask() {
+    const newTask = todoInput.value();
+    if (newTask !== "") { // prevent empty input to be added as task
+        todo.push({
+            text: newTask, // push new task onto the array of todoList as text
+            disabled: false, // disable checkbox by default
         });
-    });
+        saveToLocalStorage();
+        todoInput.value = "";
+        displayTasks();
+    }
+}
+
+function saveToLocalStorage() {
+    localStorage.setItem("todo", JSON.stringify(todo));
+}
+
+function displayTasks() {
+    todoList.innerHTML = ""; // start todo list with empty string
+    todo.forEach((item, index) => {
+        const p = document.createElement("p");
+        // write HTML inside JavaScript with ``
+    })
+}
 </script>
