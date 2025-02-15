@@ -22,16 +22,16 @@
                     <a class="nav-link active" href="overview.html">Overview</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="timer.html">Timer</a>
+                    <a class="nav-link active" href="timer.html">Timer</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="calendar.html">Calendar</a>
+                    <a class="nav-link active" href="calendar.html">Calendar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="statistics.html">Statistics</a>
+                    <a class="nav-link active" href="statistics.html">Statistics</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="about.html">About</a>
+                    <a class="nav-link active" href="about.html">About</a>
                 </li>
             </ul>
         </div>
@@ -51,9 +51,9 @@
                 <!-- java script to change profile picture -->
                 <input type="file" id="profile-picture-input" style="display: none;" accept="image/*" onchange="updateProfilePicture(this)">
                 <!-- user NAME -->
-                <p class="pt-3 fs-2 font-monospace text-purple align-items-center">
+                <p class="pt-3 fs-2 text-purple align-items-center justify-content-center">
                     <span id="username">Username</span>
-                    <span class="black-button button-small" id="editName">✏️</span>
+                    <span class="btn btn-editName" id="editName">✏️</span>
                 </p>
 
                 <!-- user attributes -->
@@ -69,7 +69,7 @@
                 id="todoInput"
                 placeholder="Enter your task..."
             />
-            <button id="addButton" class="btn">Add</button>
+            <button id="addButton" class="btn btn-addTask">Add</button>
             <hr>
             <ul class="d-flex flex-column align-items-start"> <!-- padding, align on top of each other, align at start -->
                 <!-- list for tasks with id todoList -->
