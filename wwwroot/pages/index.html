@@ -71,9 +71,9 @@
             />
             <button id="addButton" class="btn btn-addTask">Add</button>
             <hr>
-            <ul class="d-flex flex-column align-items-start"> <!-- padding, align on top of each other, align at start -->
+            <ul class="d-flex align-items-start"> <!-- padding, align on top of each other, align at start -->
                 <!-- list for tasks with id todoList -->
-                <li id="todoList"></li>
+                <li class="" id="todoList"></li>
             </ul>
             <!-- buttons to save and delete selected task ?? maybe idk -->
             <div>
@@ -93,7 +93,7 @@
 </html>
 
 <script>
-    // done with the help of a youtube tutorial: https://youtu.be/3OqWCGVaOkA
+    // done with the help of a youtube tutorial: https://youtu.be/3OqWCGVaOkA!!!!!!!
     
     // retrieve todo tasks from local storage
     let todo = JSON.parse(localStorage.getItem("todo")) || [];
@@ -128,10 +128,24 @@
     }
     
     function displayTasks() {
-        todoList.innerHTML = ""; // start todo list with empty string
-        todo.forEach((item, index) => {
-            const p = document.createElement("p");
-            // write HTML inside JavaScript with ``
-        })
-    }
+    todoList.innerHTML = "";
+    todo.forEach((item, index) => {
+        const p = document.createElement("p");
+        p.innerHTML = `
+            <div class="todo-container">
+                <input type="checkbox" class="todo-checkbox" id="input-${index}" ${
+            item.disabled ? "checked" : ""
+            }>
+                <p id="todo-${index}" class="${
+            item.disabled ? "disabled" : ""
+            }" onclick="editTask(${index})">${item.text}</p>
+            </div>
+        `;
+        p.querySelector(".todo-checkbox").addEventListener("change", () =>
+            toggleTask(index)
+        );
+            todoList.appendChild(p);
+        });
+            todoCount.textContent = todo.length;
+        }
     </script>
