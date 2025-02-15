@@ -24,6 +24,17 @@
     border-color: white;
 }
 
+.btn-addTask {
+    margin: 0px 0px 13px 0px;
+}
+
+.btn-editName {
+    padding: 0 !important;
+    margin: 0 0 5px;
+    height: 30px;
+    width: 30px;
+}
+
 #todoInput {
     height: 50px;
     width: 50%;
@@ -40,6 +51,43 @@
     color: rgb(92, 106, 134);
 }
 
+
 #todoList p {
-    color: rgb(92, 106, 134);
+    color: rgb(0, 0, 0);
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    height: 25px;
+}
+  
+li {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.todo-container {
+    display: flex;
+    gap: 20px;
+}
+
+input[type="checkbox"] {
+    appearance: none; /* remove default styling to allow for custom css */
+    width: 25px;
+    height: 25px;
+    border: 0.3px solid #000;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+input[type="checkbox"]::before {
+    content: "\2713";
+    font-size: 40px;
+    color: transparent;
+    position: relative;
+    bottom: 20px;
+}
+
+  input[type="checkbox"]:checked::before {
+    color: rgb(212, 85, 85);
 }
