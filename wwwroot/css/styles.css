@@ -48,6 +48,9 @@
 #todoList p {
     color: rgb(0, 0, 0);
     font-size: 25px;
+    display: flex;
+    align-items: center;
+    height: 25px;
 }
   
 li {
@@ -59,7 +62,6 @@ li {
 .todo-container {
     display: flex;
     gap: 20px;
-    height: 20px;
 }
 
 input[type="checkbox"] {
@@ -68,19 +70,17 @@ input[type="checkbox"] {
     height: 25px;
     border: 0.3px solid #000;
     border-radius: 3px;
-    position: relative;
     cursor: pointer;
-    top: 8px;
 }
 
 input[type="checkbox"]::before {
     content: "\2713";
-    font-size: 35px;
+    font-size: 40px;
     color: transparent;
     position: relative;
-    bottom: 17px;
+    bottom: 20px;
 }
 
   input[type="checkbox"]:checked::before {
-    color: rgb(92, 106, 134);
+    color: rgb(212, 85, 85);
 }

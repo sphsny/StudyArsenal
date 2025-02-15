@@ -70,8 +70,7 @@
                 placeholder="Enter your task..."
             />
             <button id="addButton" class="btn btn-addTask">Add</button>
-            <hr>
-            <ul class="d-flex align-items-start"> <!-- padding, align on top of each other, align at start -->
+            <ul class="pt-3"> <!-- padding, align on top of each other, align at start -->
                 <!-- list for tasks with id todoList -->
                 <li class="" id="todoList"></li>
             </ul>
@@ -107,6 +106,7 @@
     // initialisation
     document.addEventListener("DOMContentLoaded", function () {
         addButton.addEventListener("click", addTask); // run addTask function on click
+        displayTasks();
     });
     
     // functions
@@ -146,6 +146,13 @@
         );
             todoList.appendChild(p);
         });
-            todoCount.textContent = todo.length;
-        }
-    </script>
+        todoCount.textContent = todo.length;
+    }
+
+    function toggleTask(index) {
+        todo[index].disabled = !todo[index].disabled;
+        saveToLocalStorage();
+        displayTasks();
+    }
+
+</script>
