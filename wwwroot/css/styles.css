@@ -22,11 +22,12 @@
     margin: 0px 0px 13px 0px;
 }
 
-.btn-editName {
+.btn-deleteTask {
     padding: 0 !important;
     margin: 0 0 5px;
     height: 30px;
     width: 30px;
+    color: red;
 }
 
 #todoInput {
@@ -58,29 +59,17 @@ li {
     flex-direction: column;
 }
 
-
 .todo-container {
     display: flex;
     gap: 20px;
 }
 
-input[type="checkbox"] {
-    appearance: none; /* remove default styling to allow for custom css */
-    width: 25px;
-    height: 25px;
-    border: 0.3px solid #000;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-input[type="checkbox"]::before {
-    content: "\2713";
-    font-size: 40px;
-    color: transparent;
-    position: relative;
-    bottom: 20px;
-}
-
-  input[type="checkbox"]:checked::before {
-    color: rgb(212, 85, 85);
+input[type="text"] {
+    appearance: none;
+    outline: none;
+    border: none;
+    background: none;
+    cursor: initial;
+    text-align: center;
+    color: rgb(92, 106, 134);
 }

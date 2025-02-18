@@ -47,17 +47,17 @@
         <div class="container p-3 my-3 border text-center col-5"> <!-- create container, inside padding, vertical margin, center text, take space of 5 columns -->
             <h1>Profile</h1>
                 <!-- profile picture place holder -->
-                <image src="../images/profilePicturePlaceHolder.png" class="rounded-circle img-thumbnail img-fluid" style="width: 300px; height: 300px; object-fit: cover;"></image> <!-- image from https://commons.wikimedia.org/wiki/File:Profile_avatar_placeholder_large.png -->
+                <image src="../images/profilePicturePlaceHolder.png" class="rounded-circle img-thumbnail img-fluid" style="width: 300px; height: 300px; object-fit: cover;"></image> <!-- image from https://commons.wikimedia.org/wikiFile:Profile_avatar_placeholder_large.png -->
                 <!-- java script to change profile picture -->
                 <input type="file" id="profile-picture-input" style="display: none;" accept="image/*" onchange="updateProfilePicture(this)">
-                <!-- user NAME -->
-                <p class="pt-3 fs-2 text-purple align-items-center justify-content-center">
-                    <span id="username">Username</span>
-                    <span class="btn btn-editName" id="editName">✏️</span>
+                <!-- username -->
+                <p class="pt-3 fs-2">
+                    <input type="text" id="username" placeholder="Your username">
                 </p>
 
                 <!-- user attributes -->
                 <p class="fs-5">Time tracked: 0h</p> <!-- needs javascript to keep track -->
+                
         </div>
 
         <!-- TASKS (right-hand side) done with the help of a youtube tutorial: https://youtu.be/3OqWCGVaOkA -->
@@ -67,7 +67,7 @@
             <input
                 type="text text-purple"
                 id="todoInput"
-                placeholder="Enter your task..."
+                placeholder="Enter your task"
             />
             <button id="addButton" class="btn btn-addTask">Add</button>
             <ul class="pt-3"> <!-- padding, align on top of each other, align at start -->
@@ -92,22 +92,30 @@
 </html>
 
 <script>
-    // done with the help of a youtube tutorial: https://youtu.be/3OqWCGVaOkA!!!!!!!
+    // to-do list done with: https://youtu.be/3OqWCGVaOkA
+    // edit name functionality done with: https://www.youtube.com/watch?v=6eFwtaZf6zc&ab_channel=TylerPotts
     
     // retrieve todo tasks from local storage
     let todo = JSON.parse(localStorage.getItem("todo")) || [];
-    
+    const username = localStorage.getItem("username") || [];
+
     // constants
     const todoInput = document.getElementById("todoInput");
     const todoList = document.getElementById("todoList");
     const addButton = document.getElementById("addButton");
     const deleteButton = document.getElementById("deleteButton");
-    
+    const nameInput = document.querySelector("#username");
+    nameInput.value = username;
+
     // initialisation
     document.addEventListener("DOMContentLoaded", function () {
         addButton.addEventListener("click", addTask); // run addTask function on click
         displayTasks();
     });
+
+    nameInput.addEventListener('change', e => {
+        localStorage.setItem('username', e.target.value);
+    })
     
     // functions
     function addTask() {
