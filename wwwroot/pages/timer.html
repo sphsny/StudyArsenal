@@ -44,19 +44,17 @@
 
     <div class="container p-3 my-3 border text-center" style="height: 70vh;">
         <p class="fs-4">Choose your activity</p>
-        <select class="custom-select mr-sm-2 select-button" id="inlineFormCustomSelect">
-            <option value="1">COMP1004</option>
-            <option value="2">COMP1000</option>
-            <option value="3">COMP1001</option>
+        <select class="selectSubject" id="inlineFormCustomSelect">
+            <option value="">Select a subject</option>
         </select>
         
         <div id="chronoExample">
             <div class="values mt-5 fs-3">00:00:00</div>
             <div class="mt-5">
-                <button class="startButton black-button">Start</button>
-                <button class="pauseButton black-button">Pause</button>
-                <button class="stopButton black-button">Stop</button>
-                <button class="resetButton black-button">Reset</button>
+                <button class="startButton btn">Start</button>
+                <button class="pauseButton btn">Pause</button>
+                <button class="stopButton btn">Stop</button>
+                <button class="resetButton btn">Reset</button>
             </div>
         </div>
 
@@ -76,8 +74,27 @@
 
 </html>
 
-<!-- from https://albert-gonzalez.github.io/easytimer.js/ -->
 <script>
+
+    // select subject by reading from json file
+
+    document.addEventListener("DOMContentLoaded", function () {
+    fetch("../data/user.json")
+        .then(response => response.json())
+        .then(data => {
+            const select = document.getElementById("inlineFormCustomSelect");
+
+            data.subjects.forEach(subject => {
+                let option = document.createElement("option");
+                option.value = subject.id;
+                option.textContent = subject.name;
+                select.appendChild(option);
+            });
+        })
+    });
+
+    // timer script from https://albert-gonzalez.github.io/easytimer.js/
+
     $(document).ready(function () {
 
         var timer = new easytimer.Timer();
@@ -121,4 +138,5 @@
             console.log("Timer stopped");
         });
     });
+
 </script>
