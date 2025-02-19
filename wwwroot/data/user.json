@@ -1,4 +1,5 @@
 {
     "userName": "Username",
-    "timeTracked": "0"
+    "timeTracked": "0",
+    "subjects": ["COMP1002", "COMP1003", "COMP1004"]
 }

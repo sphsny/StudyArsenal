@@ -147,6 +147,7 @@
                 <p id="todo-${index}" class="${
             item.disabled ? "disabled" : ""
             }" onclick="editTask(${index})">${item.text}</p>
+                <button class="deleteTask" onclick="deleteTask(${index})">x</button>
             </div>
         `;
         p.querySelector(".todo-checkbox").addEventListener("change", () =>
@@ -159,6 +160,12 @@
 
     function toggleTask(index) {
         todo[index].disabled = !todo[index].disabled;
+        saveToLocalStorage();
+        displayTasks();
+    }
+
+    function deleteTask(index) {
+        todo.splice(index, 1);
         saveToLocalStorage();
         displayTasks();
     }
