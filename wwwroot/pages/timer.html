@@ -77,21 +77,19 @@
 <script>
 
     // select subject by reading from json file
+$(document).ready(function () {
+    $.getJSON("../data/user.json", function (data) {
+        let $select = $("#inlineFormCustomSelect");
 
-    document.addEventListener("DOMContentLoaded", function () {
-    fetch("../data/user.json")
-        .then(response => response.json())
-        .then(data => {
-            const select = document.getElementById("inlineFormCustomSelect");
-
-            data.subjects.forEach(subject => {
-                let option = document.createElement("option");
-                option.value = subject.id;
-                option.textContent = subject.name;
-                select.appendChild(option);
-            });
-        })
+        $.each(data.subjects, function (index, subject) {
+            $select.append($("<option>", {
+                value: subject.id,
+                text: subject.name
+            }));
+        });
     });
+});
+
 
     // timer script from https://albert-gonzalez.github.io/easytimer.js/
 

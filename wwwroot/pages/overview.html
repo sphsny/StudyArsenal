@@ -45,10 +45,8 @@
 
     <!-- container for subjects/activity -->
     <div class="container px-0 p-3 my-3 border text-center col-3">
-        <h2>Activities</h2>
+        <h2>Subjects</h2>
         <ul class="list-group mt-3" id="activity-list">
-            <li class="list-group-item fs-4">Guitar</li>
-            <li class="list-group-item fs-4">COMP1004</li>
         </ul>
     </div>
 
@@ -86,10 +84,25 @@
 
 </html>
 
-    <script>
+<script>
+// get subjects from json file
+$(document).ready(function () {
+    $.getJSON("../data/user.json", function (data) {
+        let $list = $("#activity-list");
+        $list.empty();
+
+        $.each(data.subjects, function (index, subject) {
+            $list.append($("<li>", {
+                class: "list-group-item fs-4",
+                text: subject.name
+            }));
+        });
+    });
+});
+
         // button id: addActivity -> open form to type in activity name -> save as list object and display
         // button id: clickOnActivity -> open session list from that activity (nested json data?)
         // button id: addSession -> open form to type in session name -> save as list object and display
         // button id: clickOnSession -> open notes from that session in the open form field, ready to edit etc.
         // button id: saveNote -> save the current form in notes
-    </script>
+</script>
