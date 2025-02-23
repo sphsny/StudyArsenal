@@ -42,23 +42,30 @@
     <!-- MAIN CONTENT -->
     <h1 class="pt-3 text-center">Track your time here!</h1>
 
+    <!-- choose subject -->
     <div class="container p-3 my-3 border text-center" style="height: 70vh;">
-        <p class="fs-4">Choose your activity</p>
-        <select class="selectSubject" id="inlineFormCustomSelect">
+        <p class="fs-4">Choose your subject</p>
+        <select class="selectSubject mb-3" id="inlineFormCustomSelect">
             <option value="">Select a subject</option>
+            <input type="text" id="customSessionName" class="form-control mb-4 border" placeholder="Enter session name">
         </select>
         
-        <div id="chronoExample">
-            <div class="values mt-5 fs-3">00:00:00</div>
-            <div class="mt-5">
+        <!-- timer from easytimer.js -->
+        <div id="chronoExample" class="p-3 mt-3">
+            <div class="values fs-3">00:00:00</div>
                 <button class="startButton btn">Start</button>
                 <button class="pauseButton btn">Pause</button>
                 <button class="stopButton btn">Stop</button>
                 <button class="resetButton btn">Reset</button>
-            </div>
         </div>
 
-        <p class="fs-4 pt-3">or add time manually</p>
+        <!-- add manual time -->
+        <div id="manualTimeForm" class="m-4">
+            <h4>or manually add time:</h4>
+            <input type="date" id="manualDate" class="form-control mb-4 mt-4"> <!-- automatically takes the date format from users' local system -->
+            <input type="text" id="manualTime" class="form-control mb-4 border" placeholder="hours:minutes">
+            <button id="submitManualTime" class="btn">Submit</button>
+        </div>
     </div>
 <div class="container">
     <footer class="d-flex flex-wrap align justify-content-center border-top bg-dark fixed-bottom p-3">
@@ -75,12 +82,12 @@
 </html>
 
 <script>
-
-    // select subject by reading from json file
 $(document).ready(function () {
-    $.getJSON("../data/user.json", function (data) {
-        let $select = $("#inlineFormCustomSelect");
+    var timer = new easytimer.Timer(); // initialisation for timer from easytimer.js
+    let sessionData = JSON.parse(localStorage.getItem("studySessions")) || {}; // sync session data with local storage
 
+    $.getJSON("../data/user.json", function (data) { // get subjects from json
+        let $select = $("#inlineFormCustomSelect");
         $.each(data.subjects, function (index, subject) {
             $select.append($("<option>", {
                 value: subject.id,
@@ -88,53 +95,128 @@ $(document).ready(function () {
             }));
         });
     });
-});
 
+    // javascript for the timer library from easytimer.js official documentation
 
-    // timer script from https://albert-gonzalez.github.io/easytimer.js/
-
-    $(document).ready(function () {
-
-        var timer = new easytimer.Timer();
-
-        $('#chronoExample .startButton').click(function () {
-            console.log("Start button clicked");
-            timer.start();
-        });
-
-        $('#chronoExample .pauseButton').click(function () {
-            console.log("Pause button clicked");
-            timer.pause();
-        });
-
-        $('#chronoExample .stopButton').click(function () {
-            console.log("Stop button clicked");
-            timer.stop();
-        });
-
-        $('#chronoExample .resetButton').click(function () {
-            console.log("Reset button clicked");
-            timer.reset();
-        });
-
-        timer.addEventListener('secondsUpdated', function () {
-            console.log("Timer updated: " + timer.getTimeValues().toString());
-            $('#chronoExample .values').html(timer.getTimeValues().toString());
-        });
-
-        timer.addEventListener('started', function () {
-            console.log("Timer started");
-            $('#chronoExample .values').html(timer.getTimeValues().toString());
-        });
-
-        timer.addEventListener('reset', function () {
-            console.log("Timer reset");
-            $('#chronoExample .values').html(timer.getTimeValues().toString());
-        });
-
-        timer.addEventListener('stopped', function () {
-            console.log("Timer stopped");
-        });
+    $('#chronoExample .startButton').click(function () {
+        timer.start();
     });
 
+    $('#chronoExample .pauseButton').click(function () {
+        timer.pause();
+    });
+
+    $('#chronoExample .stopButton').click(function () {
+        // adjust function so the user has to choose a subject otherwise can't procceec
+        let selectedSubject = $("#inlineFormCustomSelect option:selected").text();
+        if (!selectedSubject || selectedSubject === "Select a subject") {
+            alert("Please select a subject before stopping the timer.");
+            return;
+        }
+
+        let timeRecorded = timer.getTimeValues().toString(); // assign new var to store and convert the time recorded from timer to string
+        let today = new Date().toLocaleDateString("en-GB");  // get todays date in british iso format
+        let sessionLabel = saveSession(selectedSubject, today, timeRecorded); // save the session with the chosen parameters in local storage
+
+        alert(`Session saved!\nSubject: ${selectedSubject}\nSession Name: ${sessionLabel}\nDate: ${today}\nTime: ${timeRecorded}`); // confirm that the session has been saved
+
+        timer.stop(); // stop the timer
+
+        $('#chronoExample .values').html("00:00:00"); // set the timer back to 00:00:00
+    });
+
+    // pre built script from easytimer.js
+
+    $('#chronoExample .resetButton').click(function () {
+        timer.stop();
+        $('#chronoExample .values').html("00:00:00");
+    });
+
+    timer.addEventListener('secondsUpdated', function () {
+        $('#chronoExample .values').html(timer.getTimeValues().toString());
+    });
+
+    timer.addEventListener('started', function () {
+        $('#chronoExample .values').html(timer.getTimeValues().toString());
+    });
+
+    // manual time submitting function
+    $('#submitManualTime').click(function () {
+        let selectedSubject = $("#inlineFormCustomSelect option:selected").text(); // get selected subject
+        let manualDate = $("#manualDate").val(); // assign variables for date and time input
+        let manualTime = $("#manualTime").val().trim(); // trim blank space to ensure correctness
+
+        // ensure user selects a subject
+        if (!selectedSubject || selectedSubject === "Select a subject") {
+            alert("Please select a subject.");
+            return;
+        }
+
+        // ensure user selects a date
+        if (!manualDate) {
+            alert("Please select a date.");
+            return;
+        }
+
+        // select user enters valid time format
+        if (!isValidTimeFormat(manualTime)) {
+            alert("Invalid time format. Please enter time as H:MM or HH:MM.");
+            return;
+        }
+
+        // format the time from user input so it's uniform
+        manualTime = formatTime(manualTime);
+
+        let sessionLabel = saveSession(selectedSubject, manualDate, manualTime); // save the session in local storage
+
+        // confirm that time has been added
+        alert(`Manual time added!\nSubject: ${selectedSubject}\nSession Name: ${sessionLabel}\nDate: ${manualDate}\nTime: ${manualTime}`);
+
+        // clear the manual time input field after the user has added their time
+        $("#manualTime").val("");
+    });
+
+    // function to save the session with chosen parameters
+    function saveSession(subject, date, timeRecorded) {
+        let sessionData = JSON.parse(localStorage.getItem("studySessions")) || {}; // get sessions from local storage
+
+        // check if sessiondata for subject already exists and if not, create a new array for it, e.g. use case: subject doesn't have any sessions yet
+        if (!sessionData[subject]) {
+            sessionData[subject] = [];
+        }
+
+        // add custom name and trim to remove blank spaces
+        let customName = $("#customSessionName").val().trim();
+        // assign each session a number that is one larger than the last one, so that we have session 1, session 2, etc.
+        let sessionNumber = sessionData[subject].length + 1;
+        // fall back if user didn't enter a custom name for the session to name it session x
+        let sessionLabel = customName ? customName : `Session ${sessionNumber}`;
+
+        // parameteres for the new recorded session
+        let newSession = {
+            subject: subject,
+            session: sessionLabel,
+            date: date,
+            time: timeRecorded
+        };
+
+        // push the new session at the end of the array containing the subjects sessions
+        sessionData[subject].push(newSession);
+        localStorage.setItem("studySessions", JSON.stringify(sessionData)); // save in local storage
+        return sessionLabel;
+    }
+
+    // time validation function to check what time is valid for input, minutes can only be 0-59 as then it becomes an hour
+    function isValidTimeFormat(timeStr) {
+        return /^([0-9]+):([0-5][0-9])$/.test(timeStr);
+    }
+
+    // format time so it's hours:minutes
+    function formatTime(timeStr) {
+        let [hours, minutes] = timeStr.split(":"); // extract the minutes and the hours by splitting them at the :
+        hours = hours.padStart(2, "0"); // uniform the hours to have two digits if there is just a single value to ensure correct storaging
+        minutes = minutes.padStart(2, "0"); // same with the minutes
+        return `${hours}:${minutes}:00`; // append the hours:minute format so that they have the same uniform as the values taken from the timer
+    }
+});
 </script>
