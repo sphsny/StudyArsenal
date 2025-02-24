@@ -1,4 +1,11 @@
 {
     "userName": "Username",
-    "timeTracked": "0"
+    "timeTracked": "0",
+    "subjects": [
+        { "id": "1", "name": "COMP1000" },
+        { "id": "2", "name": "COMP1001" },
+        { "id": "3", "name": "COMP1002" }, 
+        { "id": "4", "name": "COMP1003" },
+        { "id": "5", "name": "COMP1004" }
+    ]
 }
