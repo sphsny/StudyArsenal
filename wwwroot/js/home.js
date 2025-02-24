@@ -37,8 +37,8 @@ $(document).ready(function () {
         $("#todoInput").val(""); // clear input after submitting task
     });
 
-    $("#todoList").on("click", ".task-text", function () { // task checkbox
-        let index = $(this).data("index"); // checkbox for task with x index
+    $("#todoList").on("click", ".task-text", function () { // what happens when clicking on text
+        let index = $(this).data("index"); // assign each task own index
         todoList[index].done = !todoList[index].done; // toggle between done state 
         saveTasks();
         renderTasks();
@@ -47,8 +47,8 @@ $(document).ready(function () {
     $("#todoList").on("click", ".delete-btn", function () {
         let index = $(this).data("index");
         todoList.splice(index, 1);
-        saveTasks();
         renderTasks();
+        saveTasks();
     });
 
     $("#username").on("change", function () {
