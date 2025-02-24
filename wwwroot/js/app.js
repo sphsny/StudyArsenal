@@ -1,28 +1,18 @@
-    $(document).ready(function () {
+$(document).ready(function () {
+    loadPage('home'); // load home page by default
 
-    $('#page-content-wrapper').load('pages/home.html');
+    // routing spa set up to load each page when corresponding element with id is clicked (navbar)
+    $('#home').click(function () { loadPage('home'); });
+    $('#overview').click(function () { loadPage('overview'); });
+    $('#timer').click(function () { loadPage('timer'); });
+    $('#statistics').click(function () { loadPage('statistics'); });
+    $('#calendar').click(function () { loadPage('calendar'); });
+    $('#about').click(function () { loadPage('about'); });
 
-    $('#home').click(function () {
-        $('#page-content-wrapper').load('pages/home.html', 'home.js');
-    });
-
-    $('#overview').click(function () {
-        $('#page-content-wrapper').load('pages/overview.html');
-    });
-
-    $('#timer').click(function () {
-        $('#page-content-wrapper').load('pages/timer.html');
-    });
-
-    $('#statistics').click(function () {
-        $('#page-content-wrapper').load('pages/statistics.html');
-    });
-
-    $('#calendar').click(function () {
-        $('#page-content-wrapper').load('pages/calendar.html');
-    });
-
-    $('#about').click(function () {
-        $('#page-content-wrapper').load('pages/about.html');
-    });
+    // function to load page
+    function loadPage(pageName) {
+        $('#page-content-wrapper').load(`pages/${pageName}.html`, function () { // load the page from /pages
+            $.getScript(`js/${pageName}.js`); // load the js script along with the page from /js
+        });
+    }
 });
