@@ -1,3 +1,9 @@
+/* default for all elements */
+* {
+    margin: 0;
+    box-sizing: border-box;
+  }
+
 /* purple text style */
 .text-purple {
     color: rgb(92, 106, 134);
