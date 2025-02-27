@@ -56,4 +56,6 @@ $(document).ready(function () {
     });
 
     renderTasks(); // render tasks upon loading js script
+
+    // timeTracked var that takes all the hours from local storage time...
 });

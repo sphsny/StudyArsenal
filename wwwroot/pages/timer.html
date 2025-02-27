@@ -1,29 +1,33 @@
 <link rel="stylesheet" href="css/styles.css">
+
+<body>
+    <h1 class="pt-3 text-center">Track your time here!</h1>
+
+    <div class="container p-3 my-3 border text-center" style="height: 70vh;">
+        <!-- choose subject -->
+        <p class="fs-4">Choose your subject</p>
+        <select class="selectSubject mb-3" id="inlineFormCustomSelect">
+            <option value="">Select a subject</option>
+            <input type="text" id="customSessionName" class="form-control mb-4 border" placeholder="Enter session name">
+        </select>
+        
+        <!-- timer from easytimer.js -->
+        <div id="chronoExample" class="p-3 mt-3">
+            <div class="values fs-3">00:00:00</div>
+                <button class="startButton btn">Start</button>
+                <button class="pauseButton btn">Pause</button>
+                <button class="stopButton btn">Stop</button>
+                <button class="resetButton btn">Reset</button>
+        </div>
+
+        <!-- add manual time -->
+        <div id="manualTimeForm" class="m-4">
+            <h4>or manually add time:</h4>
+            <input type="date" id="manualDate" class="form-control mb-4 mt-4"> <!-- automatically takes the date format from users' local system -->
+            <input type="text" id="manualTime" class="form-control mb-4 border" placeholder="hours:minutes">
+            <button id="submitManualTime" class="btn">Submit</button>
+        </div>
+    </div>
+</body>
+
 <script src="https://cdn.jsdelivr.net/npm/easytimer.js/dist/easytimer.min.js"></script>
-
-<h1 class="pt-3 text-center">Track your time here!</h1>
-
-<!-- choose subject -->
-<div class="container p-3 my-3 border text-center" style="height: 70vh;">
-    <p class="fs-4">Choose your subject</p>
-    <select class="selectSubject mb-3" id="inlineFormCustomSelect">
-        <option value="">Select a subject</option>
-        <input type="text" id="customSessionName" class="form-control mb-4 border" placeholder="Enter session name">
-    </select>
-    
-    <!-- timer from easytimer.js -->
-    <div id="chronoExample" class="p-3 mt-3">
-        <div class="values fs-3">00:00:00</div>
-            <button class="startButton btn">Start</button>
-            <button class="pauseButton btn">Pause</button>
-            <button class="stopButton btn">Stop</button>
-            <button class="resetButton btn">Reset</button>
-    </div>
-
-    <!-- add manual time -->
-    <div id="manualTimeForm" class="m-4">
-        <h4>or manually add time:</h4>
-        <input type="date" id="manualDate" class="form-control mb-4 mt-4"> <!-- automatically takes the date format from users' local system -->
-        <input type="text" id="manualTime" class="form-control mb-4 border" placeholder="hours:minutes">
-        <button id="submitManualTime" class="btn">Submit</button>
-    </div>

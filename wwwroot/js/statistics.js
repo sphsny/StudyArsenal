@@ -1,3 +1,5 @@
+// issue: statistics only get loaded after 2 clicks on the nav tab
+
 $(document).ready(function () {
     let sessionData = JSON.parse(localStorage.getItem("studySessions")) || {}; // get local storage
 
