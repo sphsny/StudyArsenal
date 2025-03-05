@@ -3,30 +3,26 @@
 
 <body>
     <!-- MAIN CONTENT -->
-    <h1 class="pt-3 text-center">Welcome to your home page!</h1> <!-- padding top, center text on site -->
-    <div class="d-flex px-5" style="height: 75vh;"> <!-- align two containers side by side, horizontal padding, height -->
-
+    <h1 class="container-header text-center">Welcome to your home page!</h1> <!-- padding top, center text on site -->
         <!-- PROFILE (left-hand side)-->
-        <div class="container p-3 my-3 border text-center col-5"> <!-- create container, inside padding, vertical margin, center text, take space of 5 columns -->
+        <div class="container"> <!-- create container, inside padding, vertical margin, center text, take space of 5 columns -->
+            <div class="profile-container container-fluid">
             <h1>Profile</h1>
                 <!-- profile picture place holder -->
-                <image src="./images/profilePicturePlaceHolder.png" class="rounded-circle img-thumbnail img-fluid" style="width: 300px; height: 300px; object-fit: cover;"></image> <!-- image from https://commons.wikimedia.org/wikiFile:Profile_avatar_placeholder_large.png -->
+                <image src="./images/profilePicturePlaceHolder.png" id="profile-img"></image> <!-- image from https://commons.wikimedia.org/wikiFile:Profile_avatar_placeholder_large.png -->
                 <!-- java script to change profile picture -->
                 <input type="file" id="profile-picture-input" style="display: none;" accept="image/*" onchange="updateProfilePicture(this)">
                 <!-- username -->
-                <p class="pt-3 fs-2">
+                <p>
                     <input type="text" id="username" placeholder="Your username">
                 </p>
-
                 <!-- user attributes -->
-                <p class="fs-5">Time tracked: 0h</p> <!-- needs javascript to keep track -->
-                
-        </div>
+                <p>Time tracked: <span id="timeTracked">0h</span></p>            
+            </div>
 
         <!-- TASKS (right-hand side) done with the help of a youtube tutorial: https://youtu.be/3OqWCGVaOkA -->
-        <div class="container p-3 my-3 border text-center col-7">
+        <div class="tasks-container container-fluid">
             <h1>Tasks</h1>
-            <!-- input form to add tasks, id for javascript: todoInput -->
             <input
                 type="text text-purple"
                 id="todoInput"
@@ -34,7 +30,6 @@
             />
             <button id="addButton" class="btn btn-addTask">Add</button>
             <ul class="pt-3"> <!-- padding, align on top of each other, align at start -->
-                <!-- list for tasks with id todoList -->
                 <li class="" id="todoList"></li>
             </ul>
         </div>

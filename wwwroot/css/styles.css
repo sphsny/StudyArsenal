@@ -1,12 +1,90 @@
 /* default for all elements */
+
+/* color palette: from https://designs.ai/colors/palette/1515 */
+
+:root {
+    --primary-color: #585b8c; /* blue */
+    --secondary-color: #5c3e84; /* purple */
+    --accent-color: #f35c6e; /* red */
+    --highlight-color: #ffa87b; /* orange */
+}
+
+/* styles applied to everything */
 * {
     margin: 0;
     box-sizing: border-box;
-  }
+    font-family: "Montserrat", sans-serif;
+}
 
-/* purple text style */
+/* purple text */
 .text-purple {
-    color: rgb(92, 106, 134);
+    color: var(--secondary-color);
+}
+
+h1 {
+    color: var(--secondary-color);
+    font-weight: 400;
+    padding-top: 10px;
+}
+
+.navbar {
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+.navbar-nav {
+    list-style: none;
+    display: flex;
+    gap: 1.25rem;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    display: inline-block;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--highlight-color);
+}
+
+.container-header {
+    padding-top: 50px;
+    color: black;
+    text-shadow: 0px 0px;
+    font-weight: 500;
+}
+
+/* MAIN CONTENT (in index.html), justifies all content to the center */
+.container-fluid {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+    min-height: 500px;
+}
+
+.container {
+    display: flex;
+    padding: 0;
+    overflow-y: auto;
+}
+
+.profile-container, .tasks-container {
+    flex: 1;
+    border: 1px solid black;
+    text-align: center;
 }
 
 /* button style */
@@ -25,10 +103,43 @@
     border-color: white !important;
 }
 
+/* style for typed inputs */
+input[type="text"] {
+    appearance: none;
+    outline: none;
+    border: none;
+    background: none;
+    cursor: initial;
+    text-align: center;
+    color: var(--secondary-color);
+}
+
+/* HOME PAGE */
+#username {
+    font-size: 25px;
+    padding-bottom: 10px;    
+}
+
+#timeTracked {
+    color: var(--accent-color);
+}
+
+/* profile picture */
+#profile-img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    padding: 10px;
+    border-radius: 50%;
+    border: none;
+}
+
+/* add task button */
 .btn-addTask {
     margin: 0px 0px 10px 0px;
 }
 
+/* todo list input */
 #todoInput {
     height: 50px;
     width: 50%;
@@ -41,10 +152,12 @@
     font-size: 25px;
 }
 
+/* to do list input placeholder color */
 #todoInput::placeholder {
     color: rgb(92, 106, 134);
 }
 
+/* to do list text */
 #todoList p {
     color: rgb(0, 0, 0);
     font-size: 25px;
@@ -53,30 +166,10 @@
     height: 25px;
 }
 
+/* to do list container */
 .todo-container {
     display: flex;
     gap: 20px;
-}
-
-input[type="text"] {
-    appearance: none;
-    outline: none;
-    border: none;
-    background: none;
-    cursor: initial;
-    text-align: center;
-    color: rgb(92, 106, 134);
-}
-
-.selectSubject {
-    border: 0.3px solid black !important;
-    border-radius: 5px;
-    height: 60px;
-    width: 180px;
-    transition: all 0.3s ease !important;
-    text-align: center;
-    font-size: 20px;
-    background-color: transparent;
 }
 
 /* styles for to do list, completed and delete-btn from the inner html in home.js */
@@ -102,14 +195,18 @@ li {
     right: 10px;
 }
 
-#chartContainer {
-    padding: 50px;
-    max-width:800px;
-    margin: auto;
-}
+/* TIMER */
 
-#studyChart {
-    height: 400px !important;
+/* select subject */
+.selectSubject {
+    border: 0.3px solid black !important;
+    border-radius: 5px;
+    height: 60px;
+    width: 180px;
+    transition: all 0.3s ease !important;
+    text-align: center;
+    font-size: 20px;
+    background-color: transparent;
 }
 
 #manualDate {
@@ -130,10 +227,59 @@ li {
     padding: 10px;
 }
 
+/* timer library from easytimer.js */
 #chronoExample {
     width: 500px;
     height: 135px;
     margin: auto;
     border: 0.1px solid rgb(92, 106, 134);
     border-radius: 5px;
+}
+
+/* STATISTICS */
+
+/* container for statistics */
+#chartContainer {
+    padding: 50px;
+    max-width:800px;
+    margin: auto;
+}
+
+/* chart itself */
+#studyChart {
+    height: 400px !important;
+}
+
+/* FOOTER */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: var(--primary-color);
+    position: fixed;
+    bottom: 0;
+    padding: 1rem 0;
+}
+
+footer p {
+    color: white;
+    margin: 0;
+    text-align: center;
+}
+
+footer a {
+    color: var(--highlight-color);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* UTILITY CLASSES */
+
+/* align text in center */
+.text-center {
+    text-align: center;
 }
