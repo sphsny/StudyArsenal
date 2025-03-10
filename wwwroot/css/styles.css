@@ -3,10 +3,10 @@
 /* color palette: from https://designs.ai/colors/palette/1515 */
 
 :root {
-    --primary-color: #585b8c; /* blue */
-    --secondary-color: #5c3e84; /* purple */
-    --accent-color: #f35c6e; /* red */
-    --highlight-color: #ffa87b; /* orange */
+    --primary-color: #8689b6; /* blue */
+    --secondary-color: rgb(133, 69, 69); /* purple */
+    --accent-color: #88879e; /* red */
+    --highlight-color: #ffbae0; /* orange */
 }
 
 /* styles applied to everything */
@@ -14,11 +14,6 @@
     margin: 0;
     box-sizing: border-box;
     font-family: "Montserrat", sans-serif;
-}
-
-/* purple text */
-.text-purple {
-    color: var(--secondary-color);
 }
 
 h1 {
@@ -130,17 +125,18 @@ input[type="text"] {
     background: none;
     cursor: initial;
     text-align: center;
-    color: var(--secondary-color);
+    color: var(--accent-color);
 }
 
 /* HOME PAGE */
 #username {
     font-size: 25px;
-    padding-bottom: 10px;    
+    padding-bottom: 10px;
+    color: var(--accent-color);
 }
 
 #timeTracked {
-    color: var(--accent-color);
+    color: var(--highlight-color);
 }
 
 /* profile picture */
@@ -167,13 +163,7 @@ input[type="text"] {
     border-color: black;
     padding: 0 10px;
     margin: 15px 0;
-    color: rgb(92, 106, 134);
     font-size: 25px;
-}
-
-/* to do list input placeholder color */
-#todoInput::placeholder {
-    color: rgb(92, 106, 134);
 }
 
 /* to do list text */
@@ -202,7 +192,7 @@ li {
 
 .completed {
     text-decoration: line-through;
-    color: rgb(92, 106, 134);
+    color: var(--highlight-color);
     cursor: pointer;
 }
 
@@ -212,6 +202,7 @@ li {
     font-size: 20px;
     position: relative;
     right: 10px;
+    cursor: pointer;
 }
 
 /* TIMER */
@@ -281,6 +272,8 @@ li {
 
 .overview-header {
     border: 1px solid #ccc;
+    font-size: 30px;
+    padding: 5px;
 }
 
 .subject-container, .session-container {
@@ -294,24 +287,38 @@ li {
 .list {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 .list-item {
-    font-size: 25px;
+    font-size: 22px;
     border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
 }
 
 .list-item:hover {
     background-color: var(--accent-color);
 }
 
-.list-item:selected {
-    background-color: var(--accent-color);
+.active {
+    background-color: var(--accent-color); 
+}
+
+.delete-session  {
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    position: relative;
 }
 
 #note {
     width: 100%;
-    min-height: 250px;
+    min-height: 500px;
     padding: 10px;
     border: 1px solid #ccc;
     font-size: 22px;

@@ -1,5 +1,95 @@
-    // button id: addActivity -> open form to type in activity name -> save as list object and display
-    // button id: clickOnActivity -> open session list from that activity (nested json data?)
-    // button id: addSession -> open form to type in session name -> save as list object and display
-    // button id: clickOnSession -> open notes from that session in the open form field, ready to edit etc.
-    // button id: saveNote -> save the current form in notes
+$(document).ready(function () {
+    let sessionData = JSON.parse(localStorage.getItem("studySessions")) || {}; // load stored session data
+    let notesData = JSON.parse(localStorage.getItem("sessionNotes")) || {}; // load stored notes
+
+    // load subjects from json file
+    $.getJSON("./data/user.json", function (data) {
+        let $subjectList = $("#subject-list"); // define subject list
+        $subjectList.empty(); // clear existing subjects before rendering ensuring no duplicates
+
+        data.subjects.forEach(subject => {
+            let $subjectItem = $("<li>")
+                .addClass("list-item subject-item")
+                .text(subject.name)
+                .data("subject", subject.name); // store subject name
+
+            $subjectList.append($subjectItem);
+        });
+    });
+
+    // load sessions of a subject on click
+    $("#subject-list").on("click", ".subject-item", function () {
+        let selectedSubject = $(this).data("subject");
+        let $sessionList = $("#session-list");
+        $sessionList.empty(); // clear existing session lists before rendering ensuring no duplicates
+
+        // highlight the selected item
+        $(".subject-item").removeClass("active"); // remove the "active" class from all items
+        $(this).addClass("active"); // add active class to the clicked item
+
+        if (sessionData[selectedSubject]) {
+            sessionData[selectedSubject].forEach(session => {
+                let $sessionItem = $("<li>")
+                    .addClass("list-item session-item")
+                    .data("subject", selectedSubject)
+                    .data("session", session.session);
+        
+                let $sessionText = $("<span>").text(`${session.session} (${session.date})`); // show session name and date
+                // add delete button to each session
+                let $deleteButton = $("<button>")
+                    .addClass("delete-session")
+                    .text("❌")
+                    .data("subject", selectedSubject)
+                    .data("session", session.session);
+        
+                $sessionItem.append($sessionText, $deleteButton);
+                $sessionList.append($sessionItem);
+            });
+        } else {
+            $sessionList.append("<li class='list-item'>No sessions found</li>");
+        }
+    });
+
+    // load session note on click
+    $("#session-list").on("click", ".session-item", function () {
+        let subject = $(this).data("subject");
+        let session = $(this).data("session");
+        let noteKey = `${subject}-${session}`; // unique key for each session note
+        let savedNote = notesData[noteKey] || ""; // get saved note or empty field
+
+        $("#note").val(savedNote).data("noteKey", noteKey); // save note and store its key
+
+        $(".session-item").removeClass("active"); // remove active class from all
+        $(this).addClass("active"); // add active class to clicked one
+    });
+
+    // save note as the user types
+    $("#note").on("input", function () {
+        let noteKey = $(this).data("noteKey");
+        if (noteKey) {
+            notesData[noteKey] = $(this).val(); // save note content
+            localStorage.setItem("sessionNotes", JSON.stringify(notesData)); // store in local storage
+        }
+    });
+
+    // delete session function
+    $("#session-list").on("click", ".delete-session", function () {
+        let subject = $(this).data("subject");
+        let sessionName = $(this).data("session");
+
+        // remove session from session data
+        sessionData[subject] = sessionData[subject].filter(session => session.session !== sessionName);
+        if (sessionData[subject].length === 0) delete sessionData[subject];
+
+        // remove session note
+        let noteKey = `${subject}-${sessionName}`;
+        delete notesData[noteKey];
+
+        // save changes
+        localStorage.setItem("studySessions", JSON.stringify(sessionData));
+        localStorage.setItem("sessionNotes", JSON.stringify(notesData));
+
+        // re-render session list
+        $(this).closest("li").remove();
+    });
+});
