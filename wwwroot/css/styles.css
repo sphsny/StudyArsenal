@@ -24,7 +24,6 @@
 h1 {
     color: var(--secondary-color);
     font-weight: 400;
-    padding-top: 10px;
 }
 
 h4 {
@@ -234,7 +233,6 @@ li {
     width: 200px;
     padding: 10px;
     border: 1px solid var(--accent-color);
-    border-radius: 5px;
     text-align: center;
 }
 
@@ -243,7 +241,6 @@ li {
     height: 50px;
     padding: 10px;
     border: 1px solid var(--accent-color);
-    border-radius: 5px;
     text-align: center;
 }
 
@@ -274,6 +271,56 @@ li {
 /* chart itself */
 #studyChart {
     height: 400px !important;
+}
+
+/* OVERVIEW */
+
+#activities-header {
+    padding-bottom: 20px;
+}
+
+.overview-header {
+    border: 1px solid #ccc;
+}
+
+.subject-container, .session-container {
+    flex: 1;
+}
+
+.note-container {
+    flex: 2;
+}
+
+.list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.list-item {
+    font-size: 25px;
+    border: 1px solid #ccc;
+}
+
+.list-item:hover {
+    background-color: var(--accent-color);
+}
+
+.list-item:selected {
+    background-color: var(--accent-color);
+}
+
+#note {
+    width: 100%;
+    min-height: 250px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 22px;
+    line-height: 1.2;
+    resize: none;
+}
+
+#note:focus {
+    outline: 1px solid var(--accent-color);
 }
 
 /* FOOTER */
@@ -308,4 +355,8 @@ footer a:hover {
 /* align text in center */
 .text-center {
     text-align: center;
+}
+
+.larger-text {
+    font-size: 20px;
 }
