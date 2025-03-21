@@ -186,8 +186,6 @@ input[type="text"] {
 /* styles for to do list, completed and delete-btn from the inner html in home.js */
 
 li {
-    display: flex;
-    flex-direction: column;
     font-size: 25px;
     cursor: pointer;
 }
@@ -266,8 +264,12 @@ li {
     height: 400px !important;
 }
 
-/* OVERVIEW */
+#todoList {
+    display: flex;
+    flex-direction: column;
+}
 
+/* OVERVIEW */
 #activities-header {
     padding-bottom: 20px;
 }
