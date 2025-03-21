@@ -92,4 +92,36 @@ $(document).ready(function () {
         // re-render session list
         $(this).closest("li").remove();
     });
+    
+    $("#exportData").click(function () {
+        let exportData = [];
+
+        Object.keys(sessionData).forEach(subject => {
+            sessionData[subject].forEach(session => {
+                let noteKey = `${subject}-${session.session}`;
+                let sessionNote = notesData[noteKey] || ""; // Get note or empty
+
+                exportData.push({
+                    subject: subject,
+                    session: session.session,
+                    date: session.date,
+                    time: session.time,
+                    note: sessionNote
+                });
+            });
+        });
+
+        let jsonData = JSON.stringify(exportData, null, 4); // Pretty-print JSON
+        let blob = new Blob([jsonData], { type: "application/json" });
+        let url = URL.createObjectURL(blob);
+
+        let a = $("<a>")
+            .attr("href", url)
+            .attr("download", "session_data.json")
+            .appendTo("body");
+
+        a[0].click();
+        a.remove();
+        URL.revokeObjectURL(url);
+    });
 });

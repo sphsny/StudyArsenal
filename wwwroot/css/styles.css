@@ -299,6 +299,7 @@ li {
     border: 1px solid #ccc;
     align-items: center;
     padding: 5px;
+    padding-left: 10px;
     display: flex;
     flex-grow: 1;
 }
@@ -316,6 +317,9 @@ li {
     background: transparent;
     font-size: 20px;
     cursor: pointer;
+    position: relative;
+    padding-right: 10px;
+    margin-left: auto;
 }
 
 #note {
