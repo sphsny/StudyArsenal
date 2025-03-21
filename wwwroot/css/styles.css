@@ -156,8 +156,9 @@ input[type="text"] {
 
 /* add task button */
 #addButton {
-    padding-top: 7px;
+    padding-top: 8px;
     font-size: 16px;
+    cursor: pointer;
 }
     
 /* todo list input */
@@ -175,7 +176,7 @@ input[type="text"] {
 /* to do list text */
 #todoList p {
     color: rgb(0, 0, 0);
-    font-size: 25px;
+    font-size: 28px;
     display: flex;
     align-items: center;
     height: 25px;
@@ -192,6 +193,7 @@ input[type="text"] {
 li {
     font-size: 25px;
     cursor: pointer;
+    gap: 4px;
 }
 
 .completed {
@@ -306,6 +308,7 @@ li {
     padding-left: 10px;
     display: flex;
     flex-grow: 1;
+    height: 50px;
 }
 
 .list-item:hover {
@@ -341,9 +344,16 @@ li {
 }
 
 #JSONfunctions {
+    display: flex;
     justify-content: center;
+    align-items: center;
+    padding: 25px;
+    gap: 5px;
 }
 
+#exportData, #importData {
+    cursor: pointer;
+}
 /* FOOTER */
 footer {
     display: flex;
