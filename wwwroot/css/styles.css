@@ -150,6 +150,10 @@ input[type="text"] {
     border: none;
 }
 
+#profile-img {
+    cursor: pointer;
+}
+
 /* add task button */
 #addButton {
     padding-top: 7px;
@@ -334,6 +338,10 @@ li {
 
 #note:focus {
     outline: 1px solid var(--accent-color);
+}
+
+#JSONfunctions {
+    justify-content: center;
 }
 
 /* FOOTER */
