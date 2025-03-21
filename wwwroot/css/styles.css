@@ -3,10 +3,10 @@
 /* color palette: from https://designs.ai/colors/palette/1515 */
 
 :root {
-    --primary-color: #8689b6; /* blue */
-    --secondary-color: rgb(133, 69, 69); /* purple */
-    --accent-color: #88879e; /* red */
-    --highlight-color: #ffbae0; /* orange */
+    --primary-color: #ebafbc; /* blue */
+    --secondary-color: #d392cb; /* purple */
+    --accent-color: #bbabee; /* red */
+    --highlight-color: #668fb7; /* orange */
 }
 
 /* styles applied to everything */
@@ -125,6 +125,7 @@ input[type="text"] {
     background: none;
     cursor: initial;
     text-align: center;
+    font-size: 18px;
     color: var(--accent-color);
 }
 
@@ -150,10 +151,11 @@ input[type="text"] {
 }
 
 /* add task button */
-.btn-addTask {
-    margin: 0px 0px 10px 0px;
+#addButton {
+    padding-top: 7px;
+    font-size: 16px;
 }
-
+    
 /* todo list input */
 #todoInput {
     height: 50px;
@@ -293,10 +295,10 @@ li {
 .list-item {
     font-size: 22px;
     border: 1px solid #ccc;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     padding: 5px;
+    display: flex;
+    flex-grow: 1;
 }
 
 .list-item:hover {
@@ -312,8 +314,6 @@ li {
     background: transparent;
     font-size: 20px;
     cursor: pointer;
-    display: flex;
-    position: relative;
 }
 
 #note {
