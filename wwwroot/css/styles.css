@@ -6,7 +6,7 @@
     --primary-color: #b7c1cf; /* blue */
     --secondary-color: #6e6596; /* purple */
     --accent-color: #473f61; /* red */
-    --highlight-color: #668fb7; /* orange */
+    --highlight-color: #90a4b8; /* orange */
 }
 
 /* styles applied to everything */
@@ -137,7 +137,7 @@ input[type="text"] {
 }
 
 #timeTracked {
-    color: var(--highlight-color);
+    color: var(--secondary-color);
 }
 
 /* profile picture */
@@ -312,11 +312,11 @@ li {
 }
 
 .list-item:hover {
-    background-color: var(--accent-color);
+    background-color: var(--highlight-color);
 }
 
 .active {
-    background-color: var(--accent-color); 
+    background-color: var(--highlight-color); 
 }
 
 .delete-session  {
@@ -380,7 +380,7 @@ footer p {
 }
 
 footer a {
-    color: var(--highlight-color);
+    color: var(--accent-color);
     text-decoration: none;
 }
 
