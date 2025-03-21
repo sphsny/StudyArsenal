@@ -3,9 +3,9 @@
 /* color palette: from https://designs.ai/colors/palette/1515 */
 
 :root {
-    --primary-color: #ebafbc; /* blue */
-    --secondary-color: #d392cb; /* purple */
-    --accent-color: #bbabee; /* red */
+    --primary-color: #b7c1cf; /* blue */
+    --secondary-color: #6e6596; /* purple */
+    --accent-color: #473f61; /* red */
     --highlight-color: #668fb7; /* orange */
 }
 
@@ -344,9 +344,6 @@ li {
 }
 
 #JSONfunctions {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 25px;
     gap: 5px;
 }
@@ -354,6 +351,16 @@ li {
 #exportData, #importData {
     cursor: pointer;
 }
+
+/* CALENDAR */
+
+.event-form {
+
+}
+
+#calendarTable {
+}
+
 /* FOOTER */
 footer {
     display: flex;
@@ -390,4 +397,10 @@ footer a:hover {
 
 .larger-text {
     font-size: 20px;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
