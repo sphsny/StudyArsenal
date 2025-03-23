@@ -2,25 +2,25 @@
 <link rel="stylesheet" href="./css/styles.css">
 
 <body>
-
     <h1 class="container-header">Welcome to your calendar!</h1>
+    <div class="centered" id="eventForm">
+        <input type="text" id="eventName" placeholder="Event Name">
+        <input type="date" id="eventDate">
+        <button class="btn" id="addEvent">Add Event</button>
+    </div>
 
-        <div class="event-form centered">
-            <input type="text" id="event-name" placeholder="Event Name">
-            <input type="date" id="event-date">
-            <button id="add-event">Add Event</button>
-        </div>
-
-        <table class="centered" id="calendarTable">
+    <div class="centered">
+        <table>
             <thead>
                 <tr>
                     <th>Event Name</th>
                     <th>Days Until</th>
-                    <th></th> <!-- place to expand each event with delete button -->
+                    <th>Delete</th>
                 </tr>
             </thead>
 
-            <tbody id="event-list">
+            <tbody id="eventList"> <!-- the actual event list containing table data defined in loadEvents() as td -->
             </tbody>
         </table>
+    </div>
 </body>

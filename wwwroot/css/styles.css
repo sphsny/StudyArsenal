@@ -25,10 +25,19 @@ h4 {
     padding-bottom: 10px;
 }
 
+table {
+    text-align: left;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid grey;
+    font-size: 20px;
+}
+
 .navbar {
     background-color: var(--primary-color);
-    display: flex;
-    justify-content: center;
     padding: 1rem 0;
     position: fixed;
     width: 100%;
@@ -117,18 +126,6 @@ h4 {
     border-color: white !important;
 }
 
-/* style for typed inputs */
-input[type="text"] {
-    appearance: none;
-    outline: none;
-    border: none;
-    background: none;
-    cursor: initial;
-    text-align: center;
-    font-size: 18px;
-    color: var(--accent-color);
-}
-
 /* HOME PAGE */
 #username {
     font-size: 25px;
@@ -198,7 +195,7 @@ li {
 
 .completed {
     text-decoration: line-through;
-    color: var(--highlight-color);
+    color: var(--accent-color);
     cursor: pointer;
 }
 
@@ -227,18 +224,24 @@ li {
 }
 
 #customSessionName {
-    width: 200px;
+    width: 300px;
     padding: 10px;
     border: 1px solid var(--accent-color);
+    border-radius: 5px;
     text-align: center;
 }
 
-#manualDate, #manualTime {
-    width: 150px;
+#manualDate {
     height: 50px;
+}
+
+#manualTime {
+    height: 50px;
+    width: 200px;
+    font-size: 15px;
     padding: 10px;
-    border: 1px solid var(--accent-color);
-    text-align: center;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 
 /* timer library from easytimer.js */
@@ -354,18 +357,41 @@ li {
 
 /* CALENDAR */
 
-.event-form {
+#eventForm {
+    padding: 15px;
+}
 
+#eventName {
+    border: solid 1px black;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 25px;
+    height: 50px;
 }
 
 #calendarTable {
+    margin: 10px;
+}
+
+#addEvent {
+    margin: 10px;
+    border-radius: 5px;
+}
+
+#eventDate {
+    height: 50px;
+}
+
+.deleteEvent {
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    cursor: pointer;
 }
 
 /* FOOTER */
 footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     background-color: var(--primary-color);
     position: fixed;
@@ -403,4 +429,25 @@ footer a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* style for typed inputs */
+input[type="text"] {
+    appearance: none;
+    outline: none;
+    border: none;
+    background: none;
+    cursor: initial;
+    text-align: center;
+    font-size: 18px;
+    color: var(--accent-color);
+}
+
+/* style for date inputs */
+input[type="date"] { 
+    border: solid 1px black;
+    min-width: 175px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 5px;
 }
