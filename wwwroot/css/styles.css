@@ -1,6 +1,6 @@
-/* default for all elements */
-
-/* color palette: from https://designs.ai/colors/palette/1515 */
+/* ==========================
+        variables
+=========================== */
 
 :root {
     --navbar-color: #90a4b8; /* dark blue */
@@ -82,6 +82,7 @@ input[type="date"] {
     top: 0;
 }
 
+/* ul holding the navbar items */
 .navbar-nav {
     list-style: none;
     display: flex;
@@ -90,10 +91,12 @@ input[type="date"] {
     margin: 0;
 }
 
+/* each li item */
 .nav-item {
     display: inline-block;
 }
 
+/* each a link */
 .nav-link {
     color: white;
     text-decoration: none;
@@ -101,6 +104,7 @@ input[type="date"] {
     transition: color 0.3s ease;
 }
 
+/* hover on a link */
 .nav-link:hover {
     color: var(--highlight-color);
 }
@@ -142,6 +146,7 @@ input[type="date"] {
     color: var(--accent-color);
 }
 
+/* total tracked time variable */
 #timeTracked {
     color: var(--secondary-color);
 }
@@ -191,12 +196,14 @@ input[type="date"] {
     gap: 20px;
 }
 
+/* completed task */
 .completed {
     text-decoration: line-through;
     color: var(--accent-color);
     cursor: pointer;
 }
 
+/* delete task button for each task */
 .delete-btn {
     border: none;
     background: transparent;
@@ -209,7 +216,6 @@ input[type="date"] {
 /* ==========================
         timer page
 =========================== */
-
 
 .timer-container {
     width: 50%;
@@ -224,7 +230,6 @@ input[type="date"] {
     align-items: center;
 }
 
-/* select subject */
 .selectSubject {
     border: 1px solid black;
     border-radius: 5px;
@@ -237,6 +242,7 @@ input[type="date"] {
     margin-bottom: 10px;
 }
 
+/* values from easytimer.js */
 .values {
     font-size: 25px;
     margin-bottom: 15px;
@@ -273,8 +279,6 @@ input[type="date"] {
         statistics page
 =========================== */
 
-
-/* container for statistics */
 #chartContainer {
     padding: 50px;
     max-width:800px;
@@ -299,10 +303,12 @@ input[type="date"] {
         overview page
 =========================== */
 
+/* targets the welcome notice */
 #activities-header {
     padding-bottom: 20px;
 }
 
+/* targets the subject, sessions and notes header */
 .overview-header {
     border: 1px solid #ccc;
     font-size: 30px;
@@ -317,6 +323,7 @@ input[type="date"] {
     flex: 2;
 }
 
+/* subject and session list */
 .list {
     list-style-type: none;
     padding: 0;
@@ -334,14 +341,17 @@ input[type="date"] {
     height: 50px;
 }
 
+/* hover over list items */
 .list-item:hover {
     background-color: var(--secondary-color);
 }
 
+/* selected list item */
 .active {
     background-color: var(--primary-color); 
 }
 
+/* delete session button class to target multiple sessions */
 .delete-session  {
     border: none;
     background: transparent;
@@ -352,6 +362,7 @@ input[type="date"] {
     margin-left: auto;
 }
 
+/* note input field */
 #note {
     width: 100%;
     min-height: 500px;
@@ -362,10 +373,12 @@ input[type="date"] {
     resize: none;
 }
 
+/* clicked note field */
 #note:focus {
     outline: 1px solid var(--accent-color);
 }
 
+/* container for export and import data buttons */
 #JSONfunctions {
     padding: 25px;
     gap: 5px;
@@ -392,19 +405,21 @@ input[type="date"] {
     height: 50px;
 }
 
+#eventDate {
+    height: 50px;
+}
+
 #calendarTable {
     margin: 10px;
 }
 
+/* add event button */
 #addEvent {
     margin: 10px;
     border-radius: 5px;
 }
 
-#eventDate {
-    height: 50px;
-}
-
+/* delete event class to work for multiple events */
 .deleteEvent {
     border: none;
     background: transparent;
@@ -416,6 +431,7 @@ input[type="date"] {
         footer
 =========================== */
 
+/* footer */
 footer {
     width: 100%;
     background-color: var(--primary-color);
@@ -424,44 +440,53 @@ footer {
     padding: 1rem 0;
 }
 
+/* footer paragraph/text */
 footer p {
     color: white;
     margin: 0;
     text-align: center;
 }
 
+/* footer link */
 footer a {
     color: var(--accent-color);
     text-decoration: none;
 }
 
+/* footer hover on link */
 footer a:hover {
     text-decoration: underline;
 }
 
-/* UTILITY CLASSES */
+/* ==========================
+        utility classes
+=========================== */
 
 /* align text in center */
 .text-center {
     text-align: center;
 }
 
+/* for larger text */
 .larger-text {
     font-size: 20px;
 }
 
+/* center elements */
 .centered {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* container */
 .container {
     display: flex;
     padding: 0;
     overflow-y: auto;
 }
 
+/* container header */
 .container-header {
     padding-top: 50px;
     color: black;
@@ -470,6 +495,7 @@ footer a:hover {
     text-align: center;
 }
 
+/* container fluid */
 .container-fluid {
     width: 100%;
     padding: 1rem;
