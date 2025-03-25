@@ -3,15 +3,21 @@
 /* color palette: from https://designs.ai/colors/palette/1515 */
 
 :root {
+    --navbar-color: #90a4b8; /* dark blue */
     --primary-color: #b7c1cf; /* blue */
     --secondary-color: #6e6596; /* purple */
-    --accent-color: #473f61; /* red */
-    --highlight-color: #90a4b8; /* orange */
+    --accent-color: #473f61; /* dark purple */
+    --highlight-color: #914343; /* red */
+    --border-color: #ccc; /* light grey */
 }
 
-/* styles applied to everything */
+/* ==========================
+        global styles
+=========================== */
+
 * {
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
     font-family: "Montserrat", sans-serif;
 }
@@ -36,8 +42,40 @@ th, td {
     font-size: 20px;
 }
 
+li {
+    font-size: 25px;
+    cursor: pointer;
+    gap: 4px;
+}
+
+/* style for typed inputs */
+input[type="text"] {
+    appearance: none;
+    outline: none;
+    border: none;
+    background: none;
+    cursor: initial;
+    text-align: center;
+    font-size: 18px;
+    color: var(--accent-color);
+}
+
+/* style for date inputs */
+input[type="date"] { 
+    border: solid 1px var(--border-color);
+    min-width: 175px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ==========================
+        nav bar
+=========================== */
+
 .navbar {
-    background-color: var(--primary-color);
+    background-color: var(--navbar-color);
     padding: 1rem 0;
     position: fixed;
     width: 100%;
@@ -67,66 +105,37 @@ th, td {
     color: var(--highlight-color);
 }
 
-.container-header {
-    padding-top: 50px;
-    color: black;
-    text-shadow: 0px 0px;
-    font-weight: 500;
-    text-align: center;
+/* ==========================
+        buttons
+=========================== */
+
+.btn {
+    border: 0.3px solid var(--border-color);
+    height: 50px;
+    width: 100px;
+    transition: all 0.3s ease;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-/* MAIN CONTENT (in index.html), justifies all content to the center */
-.container-fluid {
-    width: 100%;
-    padding: 1rem;
-    margin-top: 1rem;
-    min-height: 500px;
+.btn:hover {
+    background-color: var(--secondary-color);
+    color: white;
+    border-color: white;
 }
 
-.container {
-    display: flex;
-    padding: 0;
-    overflow-y: auto;
-}
+/* ==========================
+        home page
+=========================== */
 
 .profile-container, .tasks-container {
     flex: 1;
-    border: 1px solid #d1d1d1;
+    border: 1px solid var(--border-color);
     text-align: center;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.timer-container {
-    width: 50%;
-    margin: 30px auto;
-    padding: 20px;
-    border: 1px solid #d1d1d1;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* button style */
-.btn {
-    border: 0.3px solid black !important;
-    height: 50px;
-    width: 100px;
-    transition: all 0.3s ease !important;
-    background-color: white !important;
-    border-radius: 5px;
-}
-
-/* button on hover */
-.btn:hover {
-    background-color: black !important;
-    color: white !important;
-    border-color: white !important;
-}
-
-/* HOME PAGE */
 #username {
     font-size: 25px;
     padding-bottom: 10px;
@@ -145,9 +154,6 @@ th, td {
     padding: 10px;
     border-radius: 50%;
     border: none;
-}
-
-#profile-img {
     cursor: pointer;
 }
 
@@ -175,7 +181,7 @@ th, td {
     color: rgb(0, 0, 0);
     font-size: 28px;
     display: flex;
-    align-items: center;
+    align-items: left;
     height: 25px;
 }
 
@@ -183,14 +189,6 @@ th, td {
 .todo-container {
     display: flex;
     gap: 20px;
-}
-
-/* styles for to do list, completed and delete-btn from the inner html in home.js */
-
-li {
-    font-size: 25px;
-    cursor: pointer;
-    gap: 4px;
 }
 
 .completed {
@@ -208,7 +206,23 @@ li {
     cursor: pointer;
 }
 
-/* TIMER */
+/* ==========================
+        timer page
+=========================== */
+
+
+.timer-container {
+    width: 50%;
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid #d1d1d1;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 /* select subject */
 .selectSubject {
@@ -221,6 +235,11 @@ li {
     font-size: 16px;
     background-color: transparent;
     margin-bottom: 10px;
+}
+
+.values {
+    font-size: 25px;
+    margin-bottom: 15px;
 }
 
 #customSessionName {
@@ -250,12 +269,10 @@ li {
     margin-top: 10px;
 }
 
-.values {
-    font-size: 25px;
-    margin-bottom: 15px;
-}
+/* ==========================
+        statistics page
+=========================== */
 
-/* STATISTICS */
 
 /* container for statistics */
 #chartContainer {
@@ -270,7 +287,7 @@ li {
 
 /* chart itself */
 #studyChart {
-    height: 400px !important;
+    height: 400px;
 }
 
 #todoList {
@@ -278,7 +295,10 @@ li {
     flex-direction: column;
 }
 
-/* OVERVIEW */
+/* ==========================
+        overview page
+=========================== */
+
 #activities-header {
     padding-bottom: 20px;
 }
@@ -305,7 +325,7 @@ li {
 
 .list-item {
     font-size: 22px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     align-items: center;
     padding: 5px;
     padding-left: 10px;
@@ -315,11 +335,11 @@ li {
 }
 
 .list-item:hover {
-    background-color: var(--highlight-color);
+    background-color: var(--secondary-color);
 }
 
 .active {
-    background-color: var(--highlight-color); 
+    background-color: var(--primary-color); 
 }
 
 .delete-session  {
@@ -336,7 +356,7 @@ li {
     width: 100%;
     min-height: 500px;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     font-size: 22px;
     line-height: 1.2;
     resize: none;
@@ -355,14 +375,16 @@ li {
     cursor: pointer;
 }
 
-/* CALENDAR */
+/* ==========================
+        calendar page
+=========================== */
 
 #eventForm {
     padding: 15px;
 }
 
 #eventName {
-    border: solid 1px black;
+    border: solid 1px var(--border-color);
     border-radius: 5px;
     padding: 10px;
     margin: 10px;
@@ -390,7 +412,10 @@ li {
     cursor: pointer;
 }
 
-/* FOOTER */
+/* ==========================
+        footer
+=========================== */
+
 footer {
     width: 100%;
     background-color: var(--primary-color);
@@ -431,23 +456,23 @@ footer a:hover {
     align-items: center;
 }
 
-/* style for typed inputs */
-input[type="text"] {
-    appearance: none;
-    outline: none;
-    border: none;
-    background: none;
-    cursor: initial;
-    text-align: center;
-    font-size: 18px;
-    color: var(--accent-color);
+.container {
+    display: flex;
+    padding: 0;
+    overflow-y: auto;
 }
 
-/* style for date inputs */
-input[type="date"] { 
-    border: solid 1px black;
-    min-width: 175px;
-    font-size: 18px;
+.container-header {
+    padding-top: 50px;
+    color: black;
+    text-shadow: 0px 0px;
+    font-weight: 500;
     text-align: center;
-    border-radius: 5px;
+}
+
+.container-fluid {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+    min-height: 500px;
 }
