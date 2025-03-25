@@ -3,11 +3,11 @@
 =========================== */
 
 :root {
-    --navbar-color: #90a4b8; /* dark blue */
+    --navbar-color: #6d8297; /* dark blue */
     --primary-color: #b7c1cf; /* blue */
-    --secondary-color: #6e6596; /* purple */
+    --secondary-color: #9890bd; /* purple */
     --accent-color: #473f61; /* dark purple */
-    --highlight-color: #914343; /* red */
+    --highlight-color: #d17e7e; /* red */
     --border-color: #ccc; /* light grey */
 }
 
@@ -148,7 +148,7 @@ input[type="date"] {
 
 /* total tracked time variable */
 #timeTracked {
-    color: var(--secondary-color);
+    color: var(--highlight-color);
 }
 
 /* profile picture */
