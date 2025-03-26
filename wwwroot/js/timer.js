@@ -2,19 +2,15 @@ $(document).ready(function () {
     var timer = new easytimer.Timer(); // initialisation for timer from easytimer.js
     let sessionData = JSON.parse(localStorage.getItem("studySessions")) || {}; // sync session data with local storage
 
-    $.getJSON("./data/user.json", function (data) { // get subjects from json
-        let $select = $("#inlineFormCustomSelect");
-        $select.empty(); // ensure no duplicates when loading subject
-        $.each(data.subjects, function (index, subject) {
-            $select.append($("<option>", {
-                value: subject.id,
-                text: subject.name
-            }));
+    // load subjects from json file
+    $.getJSON("./data/subjects.json", function (data) {
+        let $select = $("#inlineFormCustomSelect").empty(); // ensure no duplicates with empty
+        data.subjects.forEach(subject => { // iterate through each value in json file
+            $("<option>", { value: subject.id, text: subject.name }).appendTo($select);
         });
     });
 
-    // javascript for the timer library from easytimer.js official documentation, pre built script for button functions
-
+    // from easytimer.js official documentation
     $('#chronoExample .startButton').off("click").on("click", function () {
         timer.start();
     });
@@ -24,13 +20,7 @@ $(document).ready(function () {
     });
 
     $('#chronoExample .stopButton').off("click").on("click", function () { // prevent double session storing with off click
-        // adjust function so the user has to choose a subject otherwise can't procceec
-        let selectedSubject = $("#inlineFormCustomSelect option:selected").text();
-        if (!selectedSubject || selectedSubject === "Select a subject") {
-            alert("Please select a subject before stopping the timer!");
-            return;
-        }
-
+        let selectedSubject = $("#inlineFormCustomSelect option:selected").text(); // get selected subject
         let timeRecorded = timer.getTimeValues().toString(); // assign new var to store and convert the time recorded from timer to string
         let today = new Date().toLocaleDateString("en-GB");  // get todays date in british iso format
         let sessionLabel = saveSession(selectedSubject, today, timeRecorded); // save the session with the chosen parameters in local storage

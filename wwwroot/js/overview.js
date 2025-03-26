@@ -3,7 +3,7 @@ $(document).ready(function () {
     let notesData = JSON.parse(localStorage.getItem("sessionNotes")) || {}; // load stored notes
 
     // load subjects from json file
-    $.getJSON("./data/user.json", function (data) {
+    $.getJSON("./data/subjects.json", function (data) {
         let $subjectList = $("#subject-list"); // define subject list
         $subjectList.empty(); // clear existing subjects before rendering ensuring no duplicates
 
