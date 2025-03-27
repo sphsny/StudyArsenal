@@ -194,6 +194,7 @@ input[type="date"] {
 .todo-container {
     display: flex;
     gap: 20px;
+    padding-left: 20px;
 }
 
 /* completed task */
