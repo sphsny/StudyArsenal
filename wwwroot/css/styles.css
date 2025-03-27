@@ -190,6 +190,10 @@ input[type="date"] {
     height: 25px;
 }
 
+#deleteData {
+    width: 120px;
+}
+
 /* to do list container */
 .todo-container {
     display: flex;

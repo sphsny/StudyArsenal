@@ -84,4 +84,9 @@ $(document).ready(function () {
     renderTasks(); // render tasks upon loading js script
 
     // timeTracked var that takes all the hours from local storage time...
+
+    $("#deleteData").click(function () {
+        localStorage.clear(); // clear local storage
+        location.reload(); // reload page for immediate display
+    });
 });
