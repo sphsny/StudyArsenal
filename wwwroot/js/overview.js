@@ -89,7 +89,7 @@ $(document).ready(function () {
         localStorage.setItem("studySessions", JSON.stringify(sessionData));
         localStorage.setItem("sessionNotes", JSON.stringify(notesData));
 
-        // re-render session list
+        // re-render list after deleting so deleted list item is immediately removed
         $(this).closest("li").remove();
     });
 });

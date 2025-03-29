@@ -1,8 +1,11 @@
+// issue: options get loaded only after double clicking on timer tab (it's something with the js loading, it happens to statistics too)
+
 $(document).ready(function () {
     var timer = new easytimer.Timer(); // initialisation for timer from easytimer.js
     let sessionData = JSON.parse(localStorage.getItem("studySessions")) || {}; // sync session data with local storage
 
     // load subjects from json file
+    // https://www.geeksforgeeks.org/how-to-add-options-to-a-select-element-using-jquery/
     $.getJSON("./data/subjects.json", function (data) {
         let $select = $("#inlineFormCustomSelect").empty(); // ensure no duplicates with empty
         data.subjects.forEach(subject => { // iterate through each value in json file
@@ -11,6 +14,7 @@ $(document).ready(function () {
     });
 
     // from easytimer.js official documentation
+    // https://albert-gonzalez.github.io/easytimer.js/
     $('#chronoExample .startButton').off("click").on("click", function () {
         timer.start();
     });
@@ -112,11 +116,13 @@ $(document).ready(function () {
     }
 
     // time validation function to check what time is valid for input, minutes can only be 0-59 as then it becomes an hour
+    // https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format
     function isValidTimeFormat(timeStr) {
         return /^([0-9]+):([0-5][0-9])$/.test(timeStr);
     }
 
     // format time so it's hours:minutes
+    // https://stackoverflow.com/questions/9886751/how-to-split-date-and-time-from-a-datetime-string
     function formatTime(timeStr) {
         let [hours, minutes] = timeStr.split(":"); // extract the minutes and the hours by splitting them at the :
         hours = hours.padStart(2, "0"); // uniform the hours to have two digits if there is just a single value to ensure correct storaging

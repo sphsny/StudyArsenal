@@ -1,6 +1,8 @@
 // REFERENCES 
 // to-do list inspired from: https://youtu.be/3OqWCGVaOkA
 // edit name functionality inspired from: https://www.youtube.com/watch?v=6eFwtaZf6zc&ab_channel=TylerPotts
+// local storage image storing conversion from https://www.reddit.com/r/learnjavascript/comments/t15a4l/how_do_i_add_an_image_from_my_computer_to_local/
+// profile picture placeholder from https://commons.wikimedia.org/wiki/File:Profile_avatar_placeholder_large.png
 
 $(document).ready(function () {
     // profile picture
