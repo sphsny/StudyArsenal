@@ -1,5 +1,8 @@
 // issue: statistics only get loaded after 2 clicks on the nav tab
 
+// using chart.js external library
+// https://www.chartjs.org/docs/latest/samples/information.html
+
 $(document).ready(function () {
     let sessionData = JSON.parse(localStorage.getItem("studySessions")) || {}; // get local storage
 
@@ -29,7 +32,7 @@ $(document).ready(function () {
         });
     });
 
-    sessionLabels.forEach((sessionLabel, index) => { // loop through the sessions
+    sessionLabels.forEach(sessionLabel => { // loop through the sessions
         let sessionTimes = subjects.map(subject => { // loop through each subject
             let totalTime = sessionData[subject] // get the sessions for a subject
                 .filter(s => s.session === sessionLabel) // check if there are sessions in a subject with the same name
@@ -60,14 +63,21 @@ $(document).ready(function () {
                 legend: { display: false } // hide legend
             },
             // allow for dynamic stretching and makes the chart looks better
+            // https://stackoverflow.com/questions/41953158/set-height-of-chart-in-chart-js
             responsive: true,
+            tooltips: {
+                enabled: false,
+            },
+            // adjust bar thickness
+            // https://stackoverflow.com/questions/71438456/chart-js-bar-thickness
+            barThickness: subjects.length < 4 ? 75 : 45, // when there is less than 4 subjects, set barthickness to 75, else, set to 45
             maintainAspectRatio: false,
             scales: {
                 x: { 
                     stacked: true,
                     title: { display: true, text: "Hours Spent" }, // add label to the x axis
                 },
-                y: { 
+                y: {
                     stacked: true, // allow bar stacking for the different sesssions
                     title: { display: true, text: "Subjects" } // add label to the y axis
                 }
@@ -81,6 +91,6 @@ $(document).ready(function () {
     }
 
     function getRandomColor() { // function to get random color
-        return `hsl(${Math.random() * 360}, 70%, 60%)`; // generate num between 0 and 360, which is the rgb spectrum, then adjust saturation and brightness
+        return `hsl(${Math.random() * 360}, 80%, 80%)`; // generate num between 0 and 360, which is the rgb spectrum, then adjust saturation and brightness
     }
 });

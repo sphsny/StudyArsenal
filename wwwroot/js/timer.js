@@ -1,20 +1,20 @@
+// issue: options get loaded only after double clicking on timer tab (it's something with the js loading, it happens to statistics too)
+
 $(document).ready(function () {
     var timer = new easytimer.Timer(); // initialisation for timer from easytimer.js
     let sessionData = JSON.parse(localStorage.getItem("studySessions")) || {}; // sync session data with local storage
 
-    $.getJSON("./data/user.json", function (data) { // get subjects from json
-        let $select = $("#inlineFormCustomSelect");
-        $select.empty(); // ensure no duplicates when loading subject
-        $.each(data.subjects, function (index, subject) {
-            $select.append($("<option>", {
-                value: subject.id,
-                text: subject.name
-            }));
+    // load subjects from json file
+    // https://www.geeksforgeeks.org/how-to-add-options-to-a-select-element-using-jquery/
+    $.getJSON("./data/subjects.json", function (data) {
+        let $select = $("#inlineFormCustomSelect").empty(); // ensure no duplicates with empty
+        data.subjects.forEach(subject => { // iterate through each value in json file
+            $("<option>", { value: subject.id, text: subject.name }).appendTo($select);
         });
     });
 
-    // javascript for the timer library from easytimer.js official documentation, pre built script for button functions
-
+    // from easytimer.js official documentation
+    // https://albert-gonzalez.github.io/easytimer.js/
     $('#chronoExample .startButton').off("click").on("click", function () {
         timer.start();
     });
@@ -24,13 +24,7 @@ $(document).ready(function () {
     });
 
     $('#chronoExample .stopButton').off("click").on("click", function () { // prevent double session storing with off click
-        // adjust function so the user has to choose a subject otherwise can't procceec
-        let selectedSubject = $("#inlineFormCustomSelect option:selected").text();
-        if (!selectedSubject || selectedSubject === "Select a subject") {
-            alert("Please select a subject before stopping the timer!");
-            return;
-        }
-
+        let selectedSubject = $("#inlineFormCustomSelect option:selected").text(); // get selected subject
         let timeRecorded = timer.getTimeValues().toString(); // assign new var to store and convert the time recorded from timer to string
         let today = new Date().toLocaleDateString("en-GB");  // get todays date in british iso format
         let sessionLabel = saveSession(selectedSubject, today, timeRecorded); // save the session with the chosen parameters in local storage
@@ -122,11 +116,13 @@ $(document).ready(function () {
     }
 
     // time validation function to check what time is valid for input, minutes can only be 0-59 as then it becomes an hour
+    // https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format
     function isValidTimeFormat(timeStr) {
         return /^([0-9]+):([0-5][0-9])$/.test(timeStr);
     }
 
     // format time so it's hours:minutes
+    // https://stackoverflow.com/questions/9886751/how-to-split-date-and-time-from-a-datetime-string
     function formatTime(timeStr) {
         let [hours, minutes] = timeStr.split(":"); // extract the minutes and the hours by splitting them at the :
         hours = hours.padStart(2, "0"); // uniform the hours to have two digits if there is just a single value to ensure correct storaging

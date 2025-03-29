@@ -1,6 +1,4 @@
 {
-    "userName": "Username",
-    "timeTracked": "0",
     "subjects": [
         { "id": "1", "name": "COMP1000" },
         { "id": "2", "name": "COMP1001" },

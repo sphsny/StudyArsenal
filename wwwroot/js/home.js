@@ -1,8 +1,36 @@
 // REFERENCES 
 // to-do list inspired from: https://youtu.be/3OqWCGVaOkA
 // edit name functionality inspired from: https://www.youtube.com/watch?v=6eFwtaZf6zc&ab_channel=TylerPotts
+// local storage image storing conversion from https://www.reddit.com/r/learnjavascript/comments/t15a4l/how_do_i_add_an_image_from_my_computer_to_local/
+// profile picture placeholder from https://commons.wikimedia.org/wiki/File:Profile_avatar_placeholder_large.png
 
 $(document).ready(function () {
+    // profile picture
+    let savedImage = localStorage.getItem("profilePicture"); // load profile picture from local storage
+    if (savedImage) {
+        $("#profile-img").attr("src", savedImage); // if there is a saved image, set it as pfp
+    }
+
+    // click profile image
+    $("#profile-img").click(function () {
+        $("#profile-picture-input").click();
+    });
+
+    // update profile picture when user selects a file
+    $("#profile-picture-input").on("change", function (event) {
+        let file = event.target.files[0]; // limit selection to only one file
+        if (file) { // check whether file was selected
+            let reader = new FileReader();
+            reader.onload = function (e) { // run function when picture is uploaded in mem
+                let imageData = e.target.result; // use the base64 image as imageData
+                $("#profile-img").attr("src", imageData); // update image, change src to new imageData var with base64 code
+                localStorage.setItem("profilePicture", imageData); // save to local storage, as local storage can only store strings, we use base64
+            };
+            reader.readAsDataURL(file); // reads file as base64 which converts the image to a base64 encoded string
+        }
+    });
+
+    // todo list
     let todoList = JSON.parse(localStorage.getItem("todo")) || []; // load todo list from local storage
     let username = localStorage.getItem("username") || ""; // load username from local storage
 
@@ -58,4 +86,9 @@ $(document).ready(function () {
     renderTasks(); // render tasks upon loading js script
 
     // timeTracked var that takes all the hours from local storage time...
+
+    $("#deleteData").click(function () {
+        localStorage.clear(); // clear local storage
+        location.reload(); // reload page for immediate display
+    });
 });

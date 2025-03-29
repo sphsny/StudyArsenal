@@ -7,7 +7,7 @@
 
         <div class="text-center subject-container">
             <h1 class="overview-header">Subjects</h1>
-            <ul class="list" id="subject-list">
+            <ul class="list" id="subject-list"> <!-- id for js -->
                 <li class="list-item">Subject</li>
             </ul>
         </div>
@@ -15,7 +15,7 @@
         <!-- container for session in each subject/activity -->
         <div class="text-center session-container">
             <h1 class="overview-header">Sessions</h1>
-            <ul class="list" id="session-list">
+            <ul class="list" id="session-list"> <!-- id for js -->
                 <li class="list-item">Session</li>
             </ul>
         </div>
@@ -25,5 +25,9 @@
             <h1 class="overview-header">Notes</h1>
             <textarea id="note"></textarea>
         </div>
+    </div>
+    <div class="container centered" id="JSONfunctions">
+        <button id="exportData" class="btn">Export Data</button>
+        <button id="importData" class="btn">Import Data</button> <!-- not working, i decided it's beyond this projects' scope -->
     </div>
 </body>

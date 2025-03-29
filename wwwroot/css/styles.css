@@ -1,24 +1,25 @@
-/* default for all elements */
-
-/* color palette: from https://designs.ai/colors/palette/1515 */
+/* ==========================
+        variables
+=========================== */
 
 :root {
-    --primary-color: #585b8c; /* blue */
-    --secondary-color: #5c3e84; /* purple */
-    --accent-color: #f35c6e; /* red */
-    --highlight-color: #ffa87b; /* orange */
+    --navbar-color: #6d8297; /* dark blue */
+    --primary-color: #b7c1cf; /* blue */
+    --secondary-color: #9890bd; /* purple */
+    --accent-color: #473f61; /* dark purple */
+    --highlight-color: #d17e7e; /* red */
+    --border-color: #ccc; /* light grey */
 }
 
-/* styles applied to everything */
+/* ==========================
+        global styles
+=========================== */
+
 * {
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
     font-family: "Montserrat", sans-serif;
-}
-
-/* purple text */
-.text-purple {
-    color: var(--secondary-color);
 }
 
 h1 {
@@ -30,16 +31,58 @@ h4 {
     padding-bottom: 10px;
 }
 
+table {
+    text-align: left;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid grey;
+    font-size: 20px;
+}
+
+li {
+    font-size: 25px;
+    cursor: pointer;
+    gap: 4px;
+}
+
+/* style for typed inputs */
+input[type="text"] {
+    appearance: none;
+    outline: none;
+    border: none;
+    background: none;
+    cursor: initial;
+    text-align: center;
+    font-size: 18px;
+    color: var(--accent-color);
+}
+
+/* style for date inputs */
+input[type="date"] { 
+    border: solid 1px var(--border-color);
+    min-width: 175px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ==========================
+        nav bar
+=========================== */
+
 .navbar {
-    background-color: var(--primary-color);
-    display: flex;
-    justify-content: center;
+    background-color: var(--navbar-color);
     padding: 1rem 0;
     position: fixed;
     width: 100%;
     top: 0;
 }
 
+/* ul holding the navbar items */
 .navbar-nav {
     list-style: none;
     display: flex;
@@ -48,10 +91,12 @@ h4 {
     margin: 0;
 }
 
+/* each li item */
 .nav-item {
     display: inline-block;
 }
 
+/* each a link */
 .nav-link {
     color: white;
     text-decoration: none;
@@ -59,38 +104,123 @@ h4 {
     transition: color 0.3s ease;
 }
 
+/* hover on a link */
 .nav-link:hover {
     color: var(--highlight-color);
 }
 
-.container-header {
-    padding-top: 50px;
-    color: black;
-    text-shadow: 0px 0px;
-    font-weight: 500;
-    text-align: center;
+/* ==========================
+        buttons
+=========================== */
+
+.btn {
+    border: 0.3px solid var(--border-color);
+    height: 50px;
+    width: 100px;
+    transition: all 0.3s ease;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-/* MAIN CONTENT (in index.html), justifies all content to the center */
-.container-fluid {
-    width: 100%;
-    padding: 1rem;
-    margin-top: 1rem;
-    min-height: 500px;
+.btn:hover {
+    background-color: var(--secondary-color);
+    color: white;
+    border-color: white;
 }
 
-.container {
-    display: flex;
-    padding: 0;
-    overflow-y: auto;
-}
+/* ==========================
+        home page
+=========================== */
 
 .profile-container, .tasks-container {
     flex: 1;
-    border: 1px solid #d1d1d1;
+    border: 1px solid var(--border-color);
     text-align: center;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
+
+#username {
+    font-size: 25px;
+    padding-bottom: 10px;
+    color: var(--accent-color);
+}
+
+/* total tracked time variable */
+#timeTracked {
+    color: var(--highlight-color);
+}
+
+/* profile picture */
+#profile-img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    padding: 10px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+/* add task button */
+#addButton {
+    padding-top: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+    
+/* todo list input */
+#todoInput {
+    height: 50px;
+    width: 50%;
+    border-radius: 3px;
+    border: 0.06px solid;
+    border-color: black;
+    padding: 0 10px;
+    margin: 15px 0;
+    font-size: 25px;
+}
+
+/* to do list text */
+#todoList p {
+    color: rgb(0, 0, 0);
+    font-size: 28px;
+    display: flex;
+    align-items: left;
+    height: 25px;
+}
+
+#deleteData {
+    width: 120px;
+}
+
+/* to do list container */
+.todo-container {
+    display: flex;
+    gap: 20px;
+    padding-left: 20px;
+}
+
+/* completed task */
+.completed {
+    text-decoration: line-through;
+    color: var(--accent-color);
+    cursor: pointer;
+}
+
+/* delete task button for each task */
+.delete-btn {
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    position: relative;
+    right: 10px;
+    cursor: pointer;
+}
+
+/* ==========================
+        timer page
+=========================== */
 
 .timer-container {
     width: 50%;
@@ -105,118 +235,6 @@ h4 {
     align-items: center;
 }
 
-/* button style */
-.btn {
-    border: 0.3px solid black !important;
-    height: 50px;
-    width: 100px;
-    transition: all 0.3s ease !important;
-    background-color: white !important;
-    border-radius: 5px;
-}
-
-/* button on hover */
-.btn:hover {
-    background-color: black !important;
-    color: white !important;
-    border-color: white !important;
-}
-
-/* style for typed inputs */
-input[type="text"] {
-    appearance: none;
-    outline: none;
-    border: none;
-    background: none;
-    cursor: initial;
-    text-align: center;
-    color: var(--secondary-color);
-}
-
-/* HOME PAGE */
-#username {
-    font-size: 25px;
-    padding-bottom: 10px;    
-}
-
-#timeTracked {
-    color: var(--accent-color);
-}
-
-/* profile picture */
-#profile-img {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-    padding: 10px;
-    border-radius: 50%;
-    border: none;
-}
-
-/* add task button */
-.btn-addTask {
-    margin: 0px 0px 10px 0px;
-}
-
-/* todo list input */
-#todoInput {
-    height: 50px;
-    width: 50%;
-    border-radius: 3px;
-    border: 0.06px solid;
-    border-color: black;
-    padding: 0 10px;
-    margin: 15px 0;
-    color: rgb(92, 106, 134);
-    font-size: 25px;
-}
-
-/* to do list input placeholder color */
-#todoInput::placeholder {
-    color: rgb(92, 106, 134);
-}
-
-/* to do list text */
-#todoList p {
-    color: rgb(0, 0, 0);
-    font-size: 25px;
-    display: flex;
-    align-items: center;
-    height: 25px;
-}
-
-/* to do list container */
-.todo-container {
-    display: flex;
-    gap: 20px;
-}
-
-/* styles for to do list, completed and delete-btn from the inner html in home.js */
-
-li {
-    display: flex;
-    flex-direction: column;
-    font-size: 25px;
-    cursor: pointer;
-}
-
-.completed {
-    text-decoration: line-through;
-    color: rgb(92, 106, 134);
-    cursor: pointer;
-}
-
-.delete-btn {
-    border: none;
-    background: transparent;
-    font-size: 20px;
-    position: relative;
-    right: 10px;
-}
-
-/* TIMER */
-
-/* select subject */
 .selectSubject {
     border: 1px solid black;
     border-radius: 5px;
@@ -229,19 +247,31 @@ li {
     margin-bottom: 10px;
 }
 
+/* values from easytimer.js */
+.values {
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
 #customSessionName {
-    width: 200px;
+    width: 300px;
     padding: 10px;
     border: 1px solid var(--accent-color);
+    border-radius: 5px;
     text-align: center;
 }
 
-#manualDate, #manualTime {
-    width: 150px;
+#manualDate {
     height: 50px;
+}
+
+#manualTime {
+    height: 50px;
+    width: 200px;
+    font-size: 15px;
     padding: 10px;
-    border: 1px solid var(--accent-color);
-    text-align: center;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 
 /* timer library from easytimer.js */
@@ -250,14 +280,10 @@ li {
     margin-top: 10px;
 }
 
-.values {
-    font-size: 25px;
-    margin-bottom: 15px;
-}
+/* ==========================
+        statistics page
+=========================== */
 
-/* STATISTICS */
-
-/* container for statistics */
 #chartContainer {
     padding: 50px;
     max-width:800px;
@@ -270,17 +296,28 @@ li {
 
 /* chart itself */
 #studyChart {
-    height: 400px !important;
+    height: 400px;
 }
 
-/* OVERVIEW */
+#todoList {
+    display: flex;
+    flex-direction: column;
+}
 
+/* ==========================
+        overview page
+=========================== */
+
+/* targets the welcome notice */
 #activities-header {
     padding-bottom: 20px;
 }
 
+/* targets the subject, sessions and notes header */
 .overview-header {
     border: 1px solid #ccc;
+    font-size: 30px;
+    padding: 5px;
 }
 
 .subject-container, .session-container {
@@ -291,72 +328,182 @@ li {
     flex: 2;
 }
 
+/* subject and session list */
 .list {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 .list-item {
-    font-size: 25px;
-    border: 1px solid #ccc;
+    font-size: 22px;
+    border: 1px solid var(--border-color);
+    align-items: center;
+    padding: 5px;
+    padding-left: 10px;
+    display: flex;
+    flex-grow: 1;
+    height: 50px;
 }
 
+/* hover over list items */
 .list-item:hover {
-    background-color: var(--accent-color);
+    background-color: var(--secondary-color);
 }
 
-.list-item:selected {
-    background-color: var(--accent-color);
+/* selected list item */
+.active {
+    background-color: var(--primary-color); 
 }
 
+/* delete session button class to target multiple sessions */
+.delete-session  {
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    cursor: pointer;
+    position: relative;
+    padding-right: 10px;
+    margin-left: auto;
+}
+
+/* note input field */
 #note {
     width: 100%;
-    min-height: 250px;
+    min-height: 500px;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     font-size: 22px;
     line-height: 1.2;
     resize: none;
 }
 
+/* clicked note field */
 #note:focus {
     outline: 1px solid var(--accent-color);
 }
 
-/* FOOTER */
+/* container for export and import data buttons */
+#JSONfunctions {
+    padding: 25px;
+    gap: 5px;
+}
+
+#exportData, #importData {
+    cursor: pointer;
+}
+
+/* ==========================
+        calendar page
+=========================== */
+
+#eventForm {
+    padding: 15px;
+}
+
+#eventName {
+    border: solid 1px var(--border-color);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 25px;
+    height: 50px;
+}
+
+#eventDate {
+    height: 50px;
+}
+
+#calendarTable {
+    margin: 10px;
+}
+
+/* add event button */
+#addEvent {
+    margin: 10px;
+    border-radius: 5px;
+}
+
+/* delete event class to work for multiple events */
+.deleteEvent {
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* ==========================
+        footer
+=========================== */
+
+/* footer */
 footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    background-color: var(--primary-color);
+    background-color: var(--navbar-color);
     position: fixed;
     bottom: 0;
     padding: 1rem 0;
 }
 
+/* footer paragraph/text */
 footer p {
     color: white;
     margin: 0;
     text-align: center;
 }
 
+/* footer link */
 footer a {
     color: var(--highlight-color);
     text-decoration: none;
 }
 
+/* footer hover on link */
 footer a:hover {
     text-decoration: underline;
 }
 
-/* UTILITY CLASSES */
+/* ==========================
+        utility classes
+=========================== */
 
 /* align text in center */
 .text-center {
     text-align: center;
 }
 
+/* for larger text */
 .larger-text {
     font-size: 20px;
+}
+
+/* center elements */
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* container */
+.container {
+    display: flex;
+    padding: 0;
+    overflow-y: auto;
+}
+
+/* container header */
+.container-header {
+    padding-top: 50px;
+    color: black;
+    text-shadow: 0px 0px;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* container fluid */
+.container-fluid {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+    min-height: 500px;
 }
