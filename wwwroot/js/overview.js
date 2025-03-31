@@ -139,6 +139,7 @@ $(document).ready(function () {
                 // save json data one by one in key value pairs into local storage
                 $.each(parsedJSON, function(key, value) {
                     localStorage.setItem(key, value);
+                    location.reload(); // reload page https://stackoverflow.com/questions/5404839/how-do-i-refresh-a-page-using-javascript
                 });
             }
             fileReader.readAsText(file); // file reader api

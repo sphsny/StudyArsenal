@@ -91,6 +91,6 @@ $(document).ready(function () {
     }
 
     function getRandomColor() { // function to get random color
-        return `hsl(${Math.random() * 360}, 80%, 80%)`; // generate num between 0 and 360, which is the rgb spectrum, then adjust saturation and brightness
+        return `hsl(${Math.random() * 360}, 50%, 50%)`; // generate num between 0 and 360, which is the rgb spectrum, then adjust saturation and brightness
     }
 });

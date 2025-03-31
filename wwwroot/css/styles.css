@@ -2,13 +2,15 @@
         variables
 =========================== */
 
+/* color palette number 3 from https://digitalsynopsis.com/design/color-schemes-palettes/ */
 :root {
-    --navbar-color: #6d8297; /* dark blue */
-    --primary-color: #b7c1cf; /* blue */
-    --secondary-color: #9890bd; /* purple */
-    --accent-color: #473f61; /* dark purple */
-    --highlight-color: #d17e7e; /* red */
-    --border-color: #ccc; /* light grey */
+    --navbar-color: #422680;
+    --primary-color: #341671;
+    --secondary-color: #280659;
+    --accent-color: #660F56;
+    --highlight-color: #AE2D68;
+    --link-color: #F54952;
+    --border-color: #ccc;
 }
 
 /* ==========================
@@ -20,6 +22,10 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Montserrat", sans-serif;
+}
+
+body {
+    background-color: rgb(224, 220, 220);
 }
 
 h1 {
@@ -68,6 +74,7 @@ input[type="date"] {
     text-align: center;
     border-radius: 5px;
     cursor: pointer;
+    background: var(--background-color);
 }
 
 /* ==========================
@@ -106,7 +113,7 @@ input[type="date"] {
 
 /* hover on a link */
 .nav-link:hover {
-    color: var(--highlight-color);
+    color: var(--link-color);
 }
 
 /* ==========================
@@ -118,13 +125,15 @@ input[type="date"] {
     height: 50px;
     width: 100px;
     transition: all 0.3s ease;
-    background-color: white;
+    background-color: var(--secondary-color);
+    filter: opacity(50%);
+    color: white;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .btn:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--highlight-color);
     color: white;
     border-color: white;
 }
@@ -175,7 +184,7 @@ input[type="date"] {
     width: 50%;
     border-radius: 3px;
     border: 0.06px solid;
-    border-color: black;
+    border-color: var(--border-color);
     padding: 0 10px;
     margin: 15px 0;
     font-size: 25px;
@@ -226,7 +235,7 @@ input[type="date"] {
     width: 50%;
     margin: 30px auto;
     padding: 20px;
-    border: 1px solid #d1d1d1;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -256,7 +265,7 @@ input[type="date"] {
 #customSessionName {
     width: 300px;
     padding: 10px;
-    border: 1px solid var(--accent-color);
+    border: 1px solid black;
     border-radius: 5px;
     text-align: center;
 }
@@ -348,12 +357,13 @@ input[type="date"] {
 
 /* hover over list items */
 .list-item:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--highlight-color);
 }
 
 /* selected list item */
 .active {
-    background-color: var(--primary-color); 
+    background-color: var(--primary-color);
+    color: white;
 }
 
 /* delete session button class to target multiple sessions */
@@ -376,11 +386,12 @@ input[type="date"] {
     font-size: 22px;
     line-height: 1.2;
     resize: none;
+    background-color: var(--background-color);
 }
 
 /* clicked note field */
 #note:focus {
-    outline: 1px solid var(--accent-color);
+    outline: none;
 }
 
 /* container for export and import data buttons */
@@ -454,7 +465,7 @@ footer p {
 
 /* footer link */
 footer a {
-    color: var(--highlight-color);
+    color: var(--link-color);
     text-decoration: none;
 }
 
