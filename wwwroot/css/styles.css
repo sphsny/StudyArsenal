@@ -354,7 +354,7 @@ input[type="date"] {
     padding-left: 10px;
     display: flex;
     flex-grow: 1;
-    height: 50px;
+    min-height: 50px;
 }
 
 /* hover over list items */
