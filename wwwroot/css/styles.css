@@ -180,7 +180,6 @@ input[type="date"] {
 
 /* add task button */
 #addButton {
-    padding-top: 8px;
     font-size: 16px;
     cursor: pointer;
 }
@@ -274,6 +273,7 @@ input[type="date"] {
 
 #manualDate {
     height: 50px;
+    border: 1px solid black;
 }
 
 #manualTime {
