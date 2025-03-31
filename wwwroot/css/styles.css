@@ -143,10 +143,17 @@ input[type="date"] {
 =========================== */
 
 .profile-container, .tasks-container {
-    flex: 1;
     border: 1px solid var(--border-color);
-    text-align: center;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-container {
+    text-align: center;
+    flex: 1.5;
+}
+
+.tasks-container {
+    flex: 2;
 }
 
 #username {
@@ -194,7 +201,6 @@ input[type="date"] {
 #todoList p {
     color: rgb(0, 0, 0);
     font-size: 28px;
-    display: flex;
     align-items: left;
     height: 25px;
 }
@@ -205,9 +211,7 @@ input[type="date"] {
 
 /* to do list container */
 .todo-container {
-    display: flex;
     gap: 20px;
-    padding-left: 20px;
 }
 
 /* completed task */
@@ -222,8 +226,6 @@ input[type="date"] {
     border: none;
     background: transparent;
     font-size: 20px;
-    position: relative;
-    right: 10px;
     cursor: pointer;
 }
 
@@ -358,11 +360,13 @@ input[type="date"] {
 /* hover over list items */
 .list-item:hover {
     background-color: var(--highlight-color);
+    filter: opacity(80%);
 }
 
 /* selected list item */
 .active {
     background-color: var(--primary-color);
+    filter: opacity(80%);
     color: white;
 }
 
