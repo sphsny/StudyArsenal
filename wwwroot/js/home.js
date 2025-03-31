@@ -83,12 +83,34 @@ $(document).ready(function () {
         localStorage.setItem("username", $(this).val()); // save username in local storage if changed
     });
 
-    renderTasks(); // render tasks upon loading js script
-
-    // timeTracked var that takes all the hours from local storage time...
-
     $("#deleteData").click(function () {
         localStorage.clear(); // clear local storage
         location.reload(); // reload page for immediate display
     });
+
+    renderTasks(); // render tasks upon loading js script
+    displayTrackedTime(); // display time tracked text
+
+    function displayTrackedTime() {
+        let sessionData = JSON.parse(localStorage.getItem("studySessions")) || {}; // get stored sessions from local storage
+        let totalHours = 0; // initialise total hours
+    
+        // iterate through sessionData
+        Object.keys(sessionData).forEach(subject => {    
+            // iterate through each subject session
+            sessionData[subject].forEach(session => {
+                totalHours += convertTimeToHours(session.time); // add time to total hours var, call convert function on the stored time
+            });
+        });
+    
+        totalHours = Math.floor(totalHours); // remove numbers after decimal https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor
+        let hourText = totalHours === 1 ? "hr" : "hrs"; // display hr when totalHours is 1
+        $('#timeTracked').text(`Time tracked: ${totalHours} ${hourText}`); // html display
+    }
+
+    // same as in statistics.js
+    function convertTimeToHours(timeStr) {
+        let [hours, minutes] = timeStr.split(':').map(Number);
+        return hours + (minutes / 60);
+    }
 });

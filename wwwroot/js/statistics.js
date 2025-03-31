@@ -86,8 +86,8 @@ $(document).ready(function () {
     });
 
     function convertTimeToHours(timeStr) { // function to convert time to hours to display hour values
-        let [hours, minutes, seconds] = timeStr.split(":").map(Number); // extract time from a string
-        return hours + (minutes / 60) + (seconds / 3600); // convert time to hours
+        let [hours, minutes] = timeStr.split(":").map(Number); // extract time from a string
+        return hours + (minutes / 60); // convert time to hours
     }
 
     function getRandomColor() { // function to get random color

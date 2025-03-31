@@ -55,16 +55,10 @@ $(document).ready(function () {
         let manualDate = $("#manualDate").val(); // assign variables for date and time input
         let manualTime = $("#manualTime").val().trim(); // trim blank space to ensure correctness
 
-        // ensure user selects a subject
-        if (!selectedSubject || selectedSubject === "Select a subject") {
-            alert("Please select a subject.");
-            return;
-        }
-
-        // ensure user selects a date
+        // if no manual date selected, set the manual date to today
         if (!manualDate) {
-            alert("Please select a date.");
-            return;
+            let defaultDate = new Date().toLocaleDateString("en-GB");
+            manualDate = defaultDate;
         }
 
         // select user enters valid time format
