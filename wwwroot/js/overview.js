@@ -92,4 +92,56 @@ $(document).ready(function () {
         // re-render list after deleting so deleted list item is immediately removed
         $(this).closest("li").remove();
     });
+    
+    // https://stackoverflow.com/questions/61586888/javascript-export-local-storage
+    $('#export-data').click(function () {
+        // empty object for data to export (local storage)
+        var dataToExport = {};
+
+        // iterate through each key in local storage to exclude profilePicture key because it's a very long base64 string
+        Object.keys(localStorage).forEach(key => {
+            if (key !== 'profilePicture') { // check each key against profile picture key
+                dataToExport[key] = localStorage.getItem(key); // add into dataToExport all other keys that are not profilePicture
+            }
+        });
+
+        var jsonData = JSON.stringify(dataToExport, null, 4); // make json file readable to humans
+    
+        var blob = new Blob([jsonData], { type: "application/json" }); // mime type for local storage
+
+        var url = window.URL.createObjectURL(blob);
+
+        var fileName = 'data.json'; // name the file
+
+        var $vLink = $('#exportLocalStorage'); // get anchor tag by id
+
+        $vLink.attr('href', url);
+        $vLink.attr('download', fileName);
+
+        $vLink[0].click(); // click on the anchor link to start the download
+    });
+
+    $('#import-data').click(function () {
+        $('#importFile').click();
+    });
+
+    // https://stackoverflow.com/questions/68129385/how-to-import-a-json-file-into-localstorage-with-a-button
+    $('#importFile').change(function (event) {
+        
+        if (event.target.files.length > 0) { // ensure only one selected file
+            let file = event.target.files[0];
+
+            let fileReader = new FileReader(); // file reader api
+
+            // function when file is uploaded
+            fileReader.onload = function () {
+                let parsedJSON = JSON.parse(fileReader.result); // parse json data
+                // save json data one by one in key value pairs into local storage
+                $.each(parsedJSON, function(key, value) {
+                    localStorage.setItem(key, value);
+                });
+            }
+            fileReader.readAsText(file); // file reader api
+        }
+    });
 });
