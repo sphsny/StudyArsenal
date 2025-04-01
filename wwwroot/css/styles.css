@@ -25,7 +25,7 @@
 }
 
 body {
-    background-color: rgb(224, 220, 220);
+    background-color: #e0dcdc;
 }
 
 h1 {
@@ -126,7 +126,7 @@ input[type="date"] {
     width: 100px;
     transition: all 0.3s ease;
     background-color: var(--secondary-color);
-    filter: opacity(50%);
+    filter: opacity(80%);
     color: white;
     border-radius: 5px;
     cursor: pointer;
