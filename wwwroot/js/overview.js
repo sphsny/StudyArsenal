@@ -96,7 +96,7 @@ $(document).ready(function () {
     // https://stackoverflow.com/questions/61586888/javascript-export-local-storage
     $('#export-data').click(function () {
         // empty object for data to export (local storage)
-        var dataToExport = {};
+        let dataToExport = {};
 
         // iterate through each key in local storage to exclude profilePicture key because it's a very long base64 string
         Object.keys(localStorage).forEach(key => {
@@ -105,15 +105,15 @@ $(document).ready(function () {
             }
         });
 
-        var jsonData = JSON.stringify(dataToExport, null, 4); // make json file readable to humans
+        let jsonData = JSON.stringify(dataToExport, null, 4); // make json file readable to humans
     
-        var blob = new Blob([jsonData], { type: "application/json" }); // mime type for local storage
+        let blob = new Blob([jsonData], { type: "application/json" }); // mime type for local storage
 
-        var url = window.URL.createObjectURL(blob);
+        let url = window.URL.createObjectURL(blob);
 
-        var fileName = 'data.json'; // name the file
+        let fileName = 'data.json'; // name the file
 
-        var $vLink = $('#exportLocalStorage'); // get anchor tag by id
+        let $vLink = $('#exportLocalStorage'); // get anchor tag by id
 
         $vLink.attr('href', url);
         $vLink.attr('download', fileName);

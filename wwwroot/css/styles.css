@@ -200,7 +200,6 @@ input[type="date"] {
 #todoList p {
     color: rgb(0, 0, 0);
     font-size: 28px;
-    align-items: left;
     height: 25px;
 }
 
