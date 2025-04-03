@@ -17,7 +17,7 @@ Then, **start a live server from** the **index.html** file.
 All further data is stored in the local storage of the browser.
 Data can be exported, imported and deleted.
 
-#### Dependencies
+## Dependencies
 
 This project includes the following third-party libraries licensed under the MIT License:
 
