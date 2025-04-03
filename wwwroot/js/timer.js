@@ -1,8 +1,6 @@
 // issue: options get loaded only after double clicking on timer tab (it's something with the js loading, it happens to statistics too)
-
 $(document).ready(function () {
-    var timer = new easytimer.Timer(); // initialisation for timer from easytimer.js
-    let sessionData = JSON.parse(localStorage.getItem("studySessions")) || {}; // sync session data with local storage
+    let timer = new easytimer.Timer(); // initialisation for timer from easytimer.js
 
     // load subjects from json file
     // https://www.geeksforgeeks.org/how-to-add-options-to-a-select-element-using-jquery/

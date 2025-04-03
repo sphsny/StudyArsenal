@@ -196,13 +196,6 @@ input[type="date"] {
     font-size: 25px;
 }
 
-/* to do list text */
-#todoList p {
-    color: rgb(0, 0, 0);
-    font-size: 28px;
-    height: 25px;
-}
-
 #deleteData {
     width: 120px;
 }
@@ -210,6 +203,8 @@ input[type="date"] {
 /* to do list container */
 .todo-container {
     gap: 20px;
+    padding-left: 20px;
+    font-size: 28px;
 }
 
 /* completed task */
