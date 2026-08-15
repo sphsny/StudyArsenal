@@ -1,4 +1,4 @@
-# Welcome to my COMP1004 coursework.
+# Welcome to "StudyArsenal"!
 
 My project is an all-in-one study tracker, designed to support students in organizing and tracking their studies.  
 Hosted as a SPA, it was developed using HTML, CSS, jQuery and JSON.
